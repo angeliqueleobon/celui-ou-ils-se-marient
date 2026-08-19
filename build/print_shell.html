@@ -1,0 +1,377 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Save the date A6</title>
+
+<style>
+:root {
+  --bg:     #F4F1EA;
+  --card:   #FFFFFF;
+  --fg:     #17201F;
+  --muted:  #616B69;
+  --line:   rgba(23, 32, 31, .15);
+  --accent: #C43A24;
+  --teal:   #14524E;
+  --sans:   ui-sans-serif, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --mono:   Menlo, "SF Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:    #101817;
+    --card:  #182220;
+    --fg:    #EFEDE4;
+    --muted: #9BA6A3;
+    --line:  rgba(239, 237, 228, .16);
+    --accent:#E4472F;
+    --teal:  #5FB3AC;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:    #101817;
+  --card:  #182220;
+  --fg:    #EFEDE4;
+  --muted: #9BA6A3;
+  --line:  rgba(239, 237, 228, .16);
+  --accent:#E4472F;
+  --teal:  #5FB3AC;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { width: 100%; max-width: 60rem; margin-inline: auto; padding: 2.5rem 1.25rem 4rem; }
+
+.kicker {
+  font-family: var(--mono);
+  font-size: .6875rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 0 0 .625rem;
+}
+h1 {
+  font-family: Futura, "Century Gothic", "Avenir Next", var(--sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  line-height: 1.05;
+  margin: 0 0 1rem;
+}
+.intro { margin: 0 0 .625rem; color: var(--muted); max-width: 42rem; }
+.intro b { color: var(--fg); font-weight: 600; }
+
+.specs {
+  display: grid; gap: .75rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  padding: 1.125rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  margin: 2rem 0 1.5rem;
+}
+.spec dt {
+  font-family: var(--mono);
+  font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--muted);
+}
+.spec dd {
+  margin: .1875rem 0 0;
+  font-family: var(--mono);
+  font-size: .8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: flex; flex-wrap: wrap; gap: 1rem 2.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  margin-bottom: 2rem;
+}
+fieldset { border: 0; margin: 0; padding: 0; }
+legend {
+  font-family: var(--mono);
+  font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--muted); padding: 0 0 .4375rem;
+}
+.seg { display: flex; gap: .3125rem; }
+.seg button {
+  font-family: var(--sans); font-size: .8125rem; font-weight: 600;
+  color: var(--fg); background: none;
+  border: 1.5px solid var(--line); border-radius: 2px;
+  padding: .4375rem .8125rem; cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+
+.piece { margin-bottom: 2.75rem; }
+.piece-tag {
+  font-family: var(--mono);
+  font-size: .625rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 .625rem;
+}
+.stage { border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+.card { display: block; width: 100%; height: auto; }
+:root[data-guides="off"] .guide { display: none; }
+
+.actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.btn {
+  font-family: var(--sans); font-size: .75rem; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: .625rem 1rem; border-radius: 2px; border: 0;
+  background: var(--accent); color: #FFF6F2; cursor: pointer;
+}
+.btn.ghost { background: none; color: var(--fg); border: 1.5px solid var(--line); }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.note { border-top: 1px solid var(--line); padding-top: 1.5rem; }
+.note h2 {
+  font-family: Futura, "Century Gothic", var(--sans);
+  font-weight: 700; text-transform: uppercase; letter-spacing: .07em;
+  font-size: 1rem; margin: 0 0 .75rem;
+}
+.note p { margin: 0 0 .75rem; color: var(--muted); max-width: 42rem; }
+.note b { color: var(--fg); font-weight: 600; }
+
+.toast {
+  position: fixed; left: 50%; bottom: 1.5rem; transform: translateX(-50%);
+  background: var(--fg); color: var(--bg);
+  font-family: var(--mono); font-size: .75rem;
+  padding: .75rem 1.25rem; border-radius: 2px;
+  opacity: 0; pointer-events: none; transition: opacity .2s ease;
+}
+.toast.on { opacity: 1; }
+
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+</style>
+
+<div class="wrap">
+  <p class="kicker">Format imprimé &bull; A6 paysage</p>
+  <h1>Prêt pour l'imprimeur</h1>
+  <p class="intro">Le save the date est passé du 16/9, qui est un ratio d'écran, au <b>A6 paysage</b>, le format carte postale. C'est le moins cher à imprimer, il entre dans une petite enveloppe, et il garde la composition validée.</p>
+  <p class="intro">Le texte est écrit en humour anglais : deux blagues seulement, dites au premier degré. En haut du recto, la carte se classe elle-même comme une comédie romantique tous publics. En bas, des mentions de générique enchaînées : d'après des faits réels, puis la carte de bien-être animal détournée sur les invités, mise au futur et laissée sans complément. Dans les versions à surnoms s'ajoute « certains noms ont été changés », qui disparaît quand ce sont les vrais prénoms. Au verso, une consigne parfaitement inutile donnée très sérieusement.</p>
+  <p class="intro">Les traits rouges marquent la <b>coupe</b> : tout ce qui dépasse sera rogné, c'est normal et voulu, c'est ce qui garantit qu'aucun liseré blanc n'apparaît sur les bords. Les traits verts marquent la <b>marge de sécurité</b> : aucun texte ne doit sortir de ce cadre.</p>
+
+  <div class="specs">
+    <div class="spec"><dt>Format final</dt><dd>148 &times; 105 mm</dd></div>
+    <div class="spec"><dt>Avec fond perdu</dt><dd>{{MMW}} &times; {{MMH}} mm</dd></div>
+    <div class="spec"><dt>Fond perdu</dt><dd>3 mm par bord</dd></div>
+    <div class="spec"><dt>PNG exporté</dt><dd>300 dpi</dd></div>
+    <div class="spec"><dt>SVG exporté</dt><dd>vectoriel, en mm</dd></div>
+  </div>
+
+  <div class="controls">
+    <fieldset>
+      <legend>Langue</legend>
+      <div class="seg" role="group" aria-label="Langue">
+        <button type="button" data-set="l" data-val="fr" aria-pressed="true">Français</button>
+        <button type="button" data-set="l" data-val="en" aria-pressed="false">English</button>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Prénoms</legend>
+      <div class="seg" role="group" aria-label="Prénoms">
+        <button type="button" data-set="n" data-val="formal" aria-pressed="true">Arnaud &amp; Emily</button>
+        <button type="button" data-set="n" data-val="nick" aria-pressed="false">Chaps &amp; Emy</button>
+        <button type="button" data-set="n" data-val="handle" aria-pressed="false">ElmTree &amp; Lachap</button>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Repères de coupe</legend>
+      <div class="seg" role="group" aria-label="Repères de coupe">
+        <button type="button" data-guides="on" aria-pressed="true">Visibles</button>
+        <button type="button" data-guides="off" aria-pressed="false">Masqués</button>
+      </div>
+    </fieldset>
+  </div>
+
+  <section class="piece">
+    <p class="piece-tag">Recto</p>
+    <div class="stage">{{RECTO}}</div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="recto">PNG 300 dpi &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="recto">SVG imprimeur &bull; FR + EN</button>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Verso &bull; proposition</p>
+    <div class="stage">{{VERSO}}</div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="verso">PNG 300 dpi &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="verso">SVG imprimeur &bull; FR + EN</button>
+    </div>
+  </section>
+
+  <section class="note">
+    <h2>Ce qu'il reste à décider</h2>
+    <p><b>Le verso.</b> Une carte imprimée a deux faces, et jusqu'ici on n'en dessinait qu'une. Celui-ci est une proposition : fond vert, trois fleurs, et une seule phrase. Si la carte part sans enveloppe, comme une vraie carte postale, il faut à la place réserver la moitié droite pour l'adresse et le timbre. Dis-moi lequel des deux usages et je l'adapte.</p>
+    <p><b>Le papier.</b> Un fond vert plein au verso demande un papier assez épais, sinon la couleur traverse et se voit au recto. 350 g minimum, mat de préférence, l'aplat vert marque moins les traces de doigts qu'un brillant.</p>
+    <p><b>Les fichiers.</b> Le SVG est le fichier à envoyer à l'imprimeur, il est vectoriel donc net à n'importe quelle taille et ses dimensions sont en millimètres. Le PNG à 300 dpi sert pour une commande en ligne qui n'accepte pas le vectoriel, ou pour valider une épreuve.</p>
+  </section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var cards = document.querySelectorAll('.card');
+  var toastEl = document.getElementById('toast');
+  var timer = null;
+  var LANGS = ['fr', 'en'];
+  var W = {{W}}, H = {{H}};
+  var MM_W = '{{MMW}}mm', MM_H = '{{MMH}}mm';
+  var DPI_SCALE = 300 / 254.0 * 1.0;   /* 1 unit = 0.1 mm, so 300 dpi = 1.1811 px per unit */
+  var GROUNDS = { recto: '#F4F0E6', verso: '#14524E' };
+
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('on');
+    clearTimeout(timer);
+    timer = setTimeout(function () { toastEl.classList.remove('on'); }, 2800);
+  }
+
+  document.querySelectorAll('[data-set]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      cards.forEach(function (c) { c.setAttribute('data-' + b.dataset.set, b.dataset.val); });
+      document.querySelectorAll('[data-set="' + b.dataset.set + '"]').forEach(function (o) {
+        o.setAttribute('aria-pressed', String(o === b));
+      });
+    });
+  });
+
+  document.querySelectorAll('[data-guides]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.documentElement.setAttribute('data-guides', b.dataset.guides);
+      document.querySelectorAll('[data-guides]').forEach(function (o) {
+        o.setAttribute('aria-pressed', String(o === b));
+      });
+    });
+  });
+
+  function stem(card, lang) {
+    return 'save-the-date-A6-' + card.id + '-' + card.getAttribute('data-n') + '-' + lang;
+  }
+
+  /* the print file carries no guides and real millimetre dimensions */
+  function serialiseAs(card, lang) {
+    var clone = card.cloneNode(true);
+    /* the id stays: the per-card CSS is scoped by it */
+    clone.removeAttribute('class');
+    clone.setAttribute('data-l', lang);
+    clone.setAttribute('width', MM_W);
+    clone.setAttribute('height', MM_H);
+    var guide = clone.querySelector('.guide');
+    if (guide) { guide.parentNode.removeChild(guide); }
+    return '<?xml version="1.0" encoding="UTF-8"?>' + new XMLSerializer().serializeToString(clone);
+  }
+
+  function toPng(svgString, ground) {
+    return new Promise(function (resolve) {
+      var img = new Image();
+      img.onload = function () {
+        try {
+          var canvas = document.createElement('canvas');
+          canvas.width = Math.round(W * DPI_SCALE);
+          canvas.height = Math.round(H * DPI_SCALE);
+          var ctx = canvas.getContext('2d');
+          ctx.fillStyle = ground;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          canvas.toBlob(function (blob) { resolve(blob || null); }, 'image/png');
+        } catch (e) { resolve(null); }
+      };
+      img.onerror = function () { resolve(null); };
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
+    });
+  }
+
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+  /* outside claude.ai there is no download capability, but no sandbox either:
+     a plain anchor works, so a self-hosted copy of this page stays fully usable */
+  function anchorSave(filename, data) {
+    try {
+      var blob = (data instanceof Blob) ? data : new Blob([data], { type: 'image/svg+xml;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  async function offer(filename, data, retried) {
+    var downloads = null;
+    try { downloads = await claude.use('downloads'); } catch (e) {}
+    if (!downloads) { return anchorSave(filename, data) ? 'saved' : 'unavailable'; }
+    try {
+      await downloads.save({ filename: filename, data: data });
+      return 'saved';
+    } catch (err) {
+      var code = err && err.code;
+      if (code === 'declined') { return 'declined'; }
+      if (code === 'extension_not_enabled' || code === 'rejected_extension') { return 'blocked'; }
+      if (code === 'rate_limited' && !retried) { await wait(1400); return offer(filename, data, true); }
+      return 'error';
+    }
+  }
+
+  async function handOver(card, kind) {
+    var svg = null, saved = 0, note = '';
+
+    for (var i = 0; i < LANGS.length; i++) {
+      var lang = LANGS[i];
+      svg = serialiseAs(card, lang);
+      var name = stem(card, lang);
+      var res = 'blocked';
+
+      /* try the asked-for format, then the other one. A blocked vector falls
+         back to PNG and says so: never a silent downgrade */
+      var order = (kind === 'png') ? ['png', 'svg'] : ['svg', 'png'];
+
+      for (var k = 0; k < order.length && res === 'blocked'; k++) {
+        var fmt = order[k];
+        if (fmt === 'png') {
+          var blob = await toPng(svg, GROUNDS[card.id]);
+          if (!blob) { continue; }
+          res = await offer(name + '.png', blob, false);
+          if (res === 'saved' && kind === 'svg') { note = 'PNG 300 dpi : le SVG est bloqu\u00e9 par le navigateur'; }
+        } else if (fmt === 'svg') {
+          res = await offer(name + '.svg', svg, false);
+          if (res === 'saved' && kind === 'png') { note = 'SVG : le PNG n\u2019a pas pu \u00eatre produit'; }
+        }
+      }
+
+      if (res === 'unavailable') { toast('T\u00e9l\u00e9chargement bloqu\u00e9 par le navigateur'); return; }
+      if (res === 'declined') { break; }
+      if (res === 'saved') { saved += 1; }
+      else { toast('Aucun format accept\u00e9 par le navigateur, utilisez Imprimer'); return; }
+      if (i === 0) { await wait(600); }
+    }
+
+    if (saved === 2) { toast(note || 'Les deux langues sont enregistr\u00e9es'); }
+    else if (saved === 1) { toast('Une seule des deux a \u00e9t\u00e9 enregistr\u00e9e'); }
+  }
+
+  document.querySelectorAll('[data-png]').forEach(function (b) {
+    b.addEventListener('click', function () { handOver(document.getElementById(b.dataset.png), 'png'); });
+  });
+  document.querySelectorAll('[data-svg]').forEach(function (b) {
+    b.addEventListener('click', function () { handOver(document.getElementById(b.dataset.svg), 'svg'); });
+  });
+})();
+</script>

@@ -1,0 +1,223 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palettes et fleurs</title>
+
+<style>
+:root {
+  --bg: #F4F1EA; --card: #FFFFFF; --fg: #17201F; --muted: #616B69;
+  --line: rgba(23,32,31,.15); --accent: #C43A24; --teal: #14524E;
+  --sans: ui-sans-serif, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --mono: Menlo, "SF Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101817; --card: #182220; --fg: #EFEDE4; --muted: #9BA6A3;
+    --line: rgba(239,237,228,.16); --accent: #E4472F; --teal: #5FB3AC;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101817; --card: #182220; --fg: #EFEDE4; --muted: #9BA6A3;
+  --line: rgba(239,237,228,.16); --accent: #E4472F; --teal: #5FB3AC;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+.wrap { width: 100%; max-width: 62rem; margin-inline: auto; padding: 2.5rem 1.25rem 4rem; }
+.kicker { font-family: var(--mono); font-size: .6875rem; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); margin: 0 0 .625rem; }
+h1 { font-family: Futura, "Century Gothic", var(--sans); font-weight: 700; text-transform: uppercase; letter-spacing: .07em; font-size: clamp(1.5rem, 5vw, 2.5rem); line-height: 1.05; margin: 0 0 1rem; }
+.intro { margin: 0 0 .625rem; color: var(--muted); max-width: 42rem; }
+.intro b { color: var(--fg); font-weight: 600; }
+.controls { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 1rem 2.25rem; padding: 1rem 1.25rem; background: var(--card); border: 1px solid var(--line); border-radius: 3px; margin: 2rem 0; }
+fieldset { border: 0; margin: 0; padding: 0; }
+legend { font-family: var(--mono); font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); padding: 0 0 .4375rem; }
+.seg { display: flex; gap: .3125rem; }
+.seg button { font-family: var(--sans); font-size: .8125rem; font-weight: 600; color: var(--fg); background: none; border: 1.5px solid var(--line); border-radius: 2px; padding: .4375rem .8125rem; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.piece { margin-bottom: 3.25rem; }
+.piece-head { margin-bottom: .875rem; }
+.piece-tag { font-family: var(--mono); font-size: .625rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin: 0 0 .25rem; }
+.piece-head h2 { font-family: Futura, "Century Gothic", var(--sans); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: 1.1875rem; margin: 0 0 .375rem; }
+.piece-why { margin: 0 0 .875rem; color: var(--muted); max-width: 42rem; }
+.swatches { display: flex; gap: .375rem; margin: 0; padding: 0; list-style: none; }
+.swatches li { width: 1.75rem; height: 1.75rem; border-radius: 2px; border: 1px solid var(--line); }
+.stage { border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+.card { display: block; width: 100%; height: auto; }
+.actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.btn { font-family: var(--sans); font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .625rem 1rem; border-radius: 2px; border: 0; background: var(--accent); color: #FFF6F2; cursor: pointer; }
+.btn.ghost { background: none; color: var(--fg); border: 1.5px solid var(--line); }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+.verdict { border-top: 1px solid var(--line); padding-top: 1.5rem; }
+.verdict h2 { font-family: Futura, "Century Gothic", var(--sans); font-weight: 700; text-transform: uppercase; letter-spacing: .07em; font-size: 1rem; margin: 0 0 .75rem; }
+.verdict p { margin: 0 0 .75rem; color: var(--muted); max-width: 42rem; }
+.verdict b { color: var(--fg); font-weight: 600; }
+.toast { position: fixed; left: 50%; bottom: 1.5rem; transform: translateX(-50%); background: var(--fg); color: var(--bg); font-family: var(--mono); font-size: .75rem; padding: .75rem 1.25rem; border-radius: 2px; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+.toast.on { opacity: 1; }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+</style>
+
+<div class="wrap">
+  <p class="kicker">Page de tri &bull; couleurs et fleurs</p>
+  <h1>Quatre autres mondes</h1>
+  <p class="intro">Jusqu'ici les sept propositions changeaient de composition mais gardaient la même palette et la même fleur. <b>Ici c'est l'inverse</b> : la composition est celle de la version sobre, identique dans les quatre, et ce sont les couleurs et la géométrie de la fleur qui changent. Comme ça on voit ce que chaque variable fait vraiment.</p>
+  <p class="intro">Le format reste le A6 paysage et le texte est le même partout.</p>
+
+  <div class="controls">
+    <fieldset>
+      <legend>Langue</legend>
+      <div class="seg" role="group" aria-label="Langue">
+        <button type="button" data-set="l" data-val="fr" aria-pressed="true">Français</button>
+        <button type="button" data-set="l" data-val="en" aria-pressed="false">English</button>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Prénoms</legend>
+      <div class="seg" role="group" aria-label="Prénoms">
+        <button type="button" data-set="n" data-val="formal" aria-pressed="true">Arnaud &amp; Emily</button>
+        <button type="button" data-set="n" data-val="nick" aria-pressed="false">Chaps &amp; Emy</button>
+        <button type="button" data-set="n" data-val="handle" aria-pressed="false">ElmTree &amp; Lachap</button>
+      </div>
+    </fieldset>
+  </div>
+
+{{BLOCKS}}
+
+  <section class="verdict">
+    <h2>Mon avis</h2>
+    <p><b>Le dahlia framboise</b> est la plus travaillée des cinq : c'est la seule dont la fleur a une vraie profondeur, grâce aux couronnes décalées, et la framboise est une couleur de fleur plutôt qu'une couleur de graphisme.</p>
+    <p><b>Terre cuite</b> est la plus sûre : chaleureuse, facile à imprimer, et les pétales pointus enlèvent le côté un peu enfantin de la fleur ronde. C'est celle que je proposerais en premier à côté du vert actuel.</p>
+    <p><b>Ciel et orange</b> est la plus intéressante des quatre parce qu'elle change de nature : du feuillage au lieu d'une fleur. Si le fleuri d'Emily peut être botanique plutôt que floral, c'est la piste à creuser.</p>
+    <p><b>Cobalt</b> est la plus 90s et la plus nette. <b>Aubergine</b> est la plus affirmée mais aussi la plus risquée : un fond sombre coûte plus cher à imprimer et pardonne moins.</p>
+    <p>Rien n'oblige à prendre un monde entier : on peut garder la palette d'un et la fleur d'un autre. Dis-moi la combinaison et je la monte.</p>
+  </section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var cards = document.querySelectorAll('.card');
+  var toastEl = document.getElementById('toast');
+  var timer = null;
+  var LANGS = ['fr', 'en'];
+  var W = {{W}}, H = {{H}};
+  var MM_W = '{{MMW}}mm', MM_H = '{{MMH}}mm';
+  var DPI_SCALE = 300 / 254.0;
+  var GROUNDS = {{GROUNDS}};
+
+  function toast(m) { toastEl.textContent = m; toastEl.classList.add('on'); clearTimeout(timer); timer = setTimeout(function(){ toastEl.classList.remove('on'); }, 2800); }
+
+  document.querySelectorAll('[data-set]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      cards.forEach(function (c) { c.setAttribute('data-' + b.dataset.set, b.dataset.val); });
+      document.querySelectorAll('[data-set="' + b.dataset.set + '"]').forEach(function (o) {
+        o.setAttribute('aria-pressed', String(o === b));
+      });
+    });
+  });
+
+  function stem(card, lang) { return 'save-the-date-A6-' + card.id + '-' + card.getAttribute('data-n') + '-' + lang; }
+
+  function serialiseAs(card, lang) {
+    var clone = card.cloneNode(true);
+    clone.removeAttribute('class');   /* the id stays: the per-card CSS is scoped by it */
+    clone.setAttribute('data-l', lang);
+    clone.setAttribute('width', MM_W); clone.setAttribute('height', MM_H);
+    return '<?xml version="1.0" encoding="UTF-8"?>' + new XMLSerializer().serializeToString(clone);
+  }
+
+  function toPng(svgString, ground) {
+    return new Promise(function (resolve) {
+      var img = new Image();
+      img.onload = function () {
+        try {
+          var canvas = document.createElement('canvas');
+          canvas.width = Math.round(W * DPI_SCALE); canvas.height = Math.round(H * DPI_SCALE);
+          var ctx = canvas.getContext('2d');
+          ctx.fillStyle = ground; ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          canvas.toBlob(function (b) { resolve(b || null); }, 'image/png');
+        } catch (e) { resolve(null); }
+      };
+      img.onerror = function () { resolve(null); };
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
+    });
+  }
+
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+  /* outside claude.ai there is no download capability, but no sandbox either:
+     a plain anchor works, so a self-hosted copy of this page stays fully usable */
+  function anchorSave(filename, data) {
+    try {
+      var blob = (data instanceof Blob) ? data : new Blob([data], { type: 'image/svg+xml;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  async function offer(filename, data, retried) {
+    var d = null;
+    try { d = await claude.use('downloads'); } catch (e) {}
+    if (!d) { return anchorSave(filename, data) ? 'saved' : 'unavailable'; }
+    try { await d.save({ filename: filename, data: data }); return 'saved'; }
+    catch (err) {
+      var c = err && err.code;
+      if (c === 'declined') { return 'declined'; }
+      if (c === 'extension_not_enabled' || c === 'rejected_extension') { return 'blocked'; }
+      if (c === 'rate_limited' && !retried) { await wait(1400); return offer(filename, data, true); }
+      return 'error';
+    }
+  }
+
+  async function handOver(card, kind) {
+    var svg = null, saved = 0, note = '';
+
+    for (var i = 0; i < LANGS.length; i++) {
+      var lang = LANGS[i];
+      svg = serialiseAs(card, lang);
+      var name = stem(card, lang);
+      var res = 'blocked';
+
+      /* try the asked-for format, then the other one. A blocked vector falls
+         back to PNG and says so: never a silent downgrade */
+      var order = (kind === 'png') ? ['png', 'svg'] : ['svg', 'png'];
+
+      for (var k = 0; k < order.length && res === 'blocked'; k++) {
+        var fmt = order[k];
+        if (fmt === 'png') {
+          var blob = await toPng(svg, GROUNDS[card.id]);
+          if (!blob) { continue; }
+          res = await offer(name + '.png', blob, false);
+          if (res === 'saved' && kind === 'svg') { note = 'PNG 300 dpi : le SVG est bloqu\u00e9 par le navigateur'; }
+        } else if (fmt === 'svg') {
+          res = await offer(name + '.svg', svg, false);
+          if (res === 'saved' && kind === 'png') { note = 'SVG : le PNG n\u2019a pas pu \u00eatre produit'; }
+        }
+      }
+
+      if (res === 'unavailable') { toast('T\u00e9l\u00e9chargement bloqu\u00e9 par le navigateur'); return; }
+      if (res === 'declined') { break; }
+      if (res === 'saved') { saved += 1; }
+      else { toast('Aucun format accept\u00e9 par le navigateur, utilisez Imprimer'); return; }
+      if (i === 0) { await wait(600); }
+    }
+
+    if (saved === 2) { toast(note || 'Les deux langues sont enregistr\u00e9es'); }
+    else if (saved === 1) { toast('Une seule des deux a \u00e9t\u00e9 enregistr\u00e9e'); }
+  }
+
+  document.querySelectorAll('[data-png]').forEach(function (b) {
+    b.addEventListener('click', function () { handOver(document.getElementById(b.dataset.png), 'png'); });
+  });
+  document.querySelectorAll('[data-svg]').forEach(function (b) {
+    b.addEventListener('click', function () { handOver(document.getElementById(b.dataset.svg), 'svg'); });
+  });
+})();
+</script>

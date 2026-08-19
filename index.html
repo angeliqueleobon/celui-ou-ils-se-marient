@@ -1,0 +1,791 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Save the date mai 2027</title>
+
+<style>
+:root {
+  --bg:     #F4F1EA;
+  --card:   #FFFFFF;
+  --fg:     #17201F;
+  --muted:  #616B69;
+  --line:   rgba(23, 32, 31, .15);
+  --accent: #C43A24;
+  --teal:   #14524E;
+  --sans:   ui-sans-serif, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --mono:   Menlo, "SF Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:    #101817;
+    --card:  #182220;
+    --fg:    #EFEDE4;
+    --muted: #9BA6A3;
+    --line:  rgba(239, 237, 228, .16);
+    --accent:#E4472F;
+    --teal:  #5FB3AC;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:    #101817;
+  --card:  #182220;
+  --fg:    #EFEDE4;
+  --muted: #9BA6A3;
+  --line:  rgba(239, 237, 228, .16);
+  --accent:#E4472F;
+  --teal:  #5FB3AC;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { width: 100%; max-width: 58rem; margin-inline: auto; padding: 2.5rem 1.25rem 4rem; }
+
+.kicker {
+  font-family: var(--mono);
+  font-size: .6875rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 0 0 .625rem;
+}
+h1 {
+  font-family: Futura, "Century Gothic", "Avenir Next", var(--sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  line-height: 1.05;
+  margin: 0 0 1rem;
+}
+.intro { margin: 0 0 .625rem; color: var(--muted); max-width: 42rem; }
+.intro b { color: var(--fg); font-weight: 600; }
+
+.specs {
+  display: grid; gap: .75rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  padding: 1.125rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  margin: 2rem 0 1.5rem;
+}
+.spec dt {
+  font-family: var(--mono);
+  font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--muted);
+}
+.spec dd {
+  margin: .1875rem 0 0;
+  font-family: var(--mono);
+  font-size: .8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: flex; flex-wrap: wrap; gap: 1rem 2.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  margin-bottom: 2rem;
+}
+fieldset { border: 0; margin: 0; padding: 0; }
+legend {
+  font-family: var(--mono);
+  font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--muted); padding: 0 0 .4375rem;
+}
+.seg { display: flex; gap: .3125rem; }
+.seg button {
+  font-family: var(--sans); font-size: .8125rem; font-weight: 600;
+  color: var(--fg); background: none;
+  border: 1.5px solid var(--line); border-radius: 2px;
+  padding: .4375rem .8125rem; cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+
+.family {
+  font-family: Futura, "Century Gothic", var(--sans);
+  font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+  font-size: .9375rem; color: var(--teal);
+  margin: 3rem 0 .75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+.family + .intro { margin-bottom: 1.5rem; }
+.piece { margin-bottom: 2.75rem; }
+.piece-tag {
+  font-family: var(--mono);
+  font-size: .625rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 .625rem;
+}
+.stage { border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+.card { display: block; width: 100%; height: auto; }
+:root[data-guides="off"] .guide { display: none; }
+
+.actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.btn {
+  font-family: var(--sans); font-size: .75rem; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: .625rem 1rem; border-radius: 2px; border: 0;
+  background: var(--accent); color: #FFF6F2; cursor: pointer;
+}
+.btn.ghost { background: none; color: var(--fg); border: 1.5px solid var(--line); }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.note { border-top: 1px solid var(--line); padding-top: 1.5rem; }
+.note h2 {
+  font-family: Futura, "Century Gothic", var(--sans);
+  font-weight: 700; text-transform: uppercase; letter-spacing: .07em;
+  font-size: 1rem; margin: 0 0 .75rem;
+}
+.note p { margin: 0 0 .75rem; color: var(--muted); max-width: 42rem; }
+.note b { color: var(--fg); font-weight: 600; }
+
+.toast {
+  position: fixed; left: 50%; bottom: 1.5rem; transform: translateX(-50%);
+  background: var(--fg); color: var(--bg);
+  font-family: var(--mono); font-size: .75rem;
+  padding: .75rem 1.25rem; border-radius: 2px;
+  opacity: 0; pointer-events: none; transition: opacity .2s ease;
+}
+.toast.on { opacity: 1; }
+
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+
+@media print {
+  body { background: #FFF; }
+  .wrap { max-width: none; padding: 0; }
+  .kicker, h1, .intro, .note, .controls, .actions, .toast { display: none; }
+
+  /* the labels stay: in a PDF they are how you tell the proposals apart */
+  .family {
+    border-top: 0; padding-top: 0; margin: 0 0 6mm;
+    font-size: 11pt; page-break-before: always;
+  }
+  .family:first-of-type { page-break-before: avoid; }
+  .piece-tag, .side-tag { font-size: 8pt; margin: 0 0 2mm; }
+
+  .piece { margin: 0 0 9mm; page-break-inside: avoid; }
+  .stage { border: 1px solid #d5d0c8; border-radius: 0; box-shadow: none; max-width: 152mm; }
+  .two-up { grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .two-up .stage { max-width: 88mm; }
+
+  @page { size: A4 portrait; margin: 12mm; }
+}
+</style>
+
+<div class="wrap">
+  <p class="kicker">Beyssac &bull; vendredi 7 mai 2027</p>
+  <h1>Le save the date</h1>
+  <p class="intro">Onze propositions, à critiquer sans ménagement. Elles sont rangées en deux familles : les trois premières ne changent que la dose de fleurs, les quatre suivantes changent d'organisation, les quatre dernières changent de couleurs et de fleur.</p>
+  <p class="intro">L'idée : le mariage annoncé comme une <b>série qui sort au printemps</b>, et le save the date en est le carton-titre. Même texte, même typo et mêmes couleurs partout.</p>
+
+  <section class="note" style="border-top:0; padding-top:0; margin-bottom:1.5rem">
+    <h2>Le format</h2>
+    <p><b>Carte postale, 148 &times; 105 mm.</b> Comme la carte sera imprimée et non envoyée par message, il fallait un format papier standard plutôt qu'un format d'écran. Celui-ci est le plus courant et le moins cher à imprimer, il entre dans une enveloppe ordinaire, et il n'oblige à rien recomposer.</p>
+    <p>Les fleurs sortent du cadre volontairement : elles seront coupées au bord de la carte, ce qui évite le liseré blanc qu'on voit sur les impressions bon marché. C'est aussi pour ça qu'elles paraissent tronquées à l'écran.</p>
+    <p>La carte a deux faces, et chaque verso est montré avec les rectos auxquels il correspond.</p>
+    <p>Pour garder une trace ou transmettre l'ensemble, <b>imprimer la page en PDF</b> donne un document propre, sans les boutons, avec les étiquettes de chaque proposition. La langue et les prénoms imprimés sont ceux sélectionnés à l'écran au moment de l'impression.</p>
+    <p><b>Il n'y a pas besoin d'aimer les onze.</b> Deux ou trois qui plaisent suffisent, et dire pourquoi les autres ne vont pas est aussi utile que de désigner la gagnante.</p>
+  </section>
+
+  <div class="controls">
+    <fieldset>
+      <legend>Langue</legend>
+      <div class="seg" role="group" aria-label="Langue">
+        <button type="button" data-set="l" data-val="fr" aria-pressed="true">Français</button>
+        <button type="button" data-set="l" data-val="en" aria-pressed="false">English</button>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Prénoms</legend>
+      <div class="seg" role="group" aria-label="Prénoms">
+        <button type="button" data-set="n" data-val="formal" aria-pressed="true">Arnaud &amp; Emily</button>
+        <button type="button" data-set="n" data-val="nick" aria-pressed="false">Chaps &amp; Emy</button>
+        <button type="button" data-set="n" data-val="handle" aria-pressed="false">ElmTree &amp; Lachap</button>
+      </div>
+    </fieldset>
+  </div>
+
+  <h2 class="family">Même composition, trois doses</h2>
+
+  <section class="piece">
+    <p class="piece-tag">Proposition 1 &bull; sobre</p>
+    <div class="stage"><svg id="sobre" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, version sobre, A6 paysage"><style>
+    text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; }
+    .nm    { font-weight: 700; letter-spacing: 11px; }
+    .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; }
+    .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; }
+    .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .huge-date { font-size: 112px; letter-spacing: 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .title-s { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+    .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; }
+    .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .55; }
+    .verso { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+
+    svg[data-l="fr"] .en, svg[data-l="en"] .fr { display: none; }
+    svg[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    svg[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    svg[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#F4F0E6"/><g fill="#E4472F"><circle cx="1462.0" cy="264.0" r="180.0"/><circle cx="1714.9" cy="410.0" r="180.0"/><circle cx="1714.9" cy="702.0" r="180.0"/><circle cx="1462.0" cy="848.0" r="180.0"/><circle cx="1209.1" cy="702.0" r="180.0"/><circle cx="1209.1" cy="410.0" r="180.0"/></g><circle cx="1462.0" cy="556.0" r="232.0" fill="#E9B23C"/><text class="prod fr" x="140" y="268" fill="#14524E" text-anchor="start">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="140" y="268" fill="#14524E" text-anchor="start">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="430" fill="#17201F">ARNAUD</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="540" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>EMILY</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="430" fill="#17201F">CHAPS</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="540" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>EMY</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="430" fill="#17201F">ELMTREE</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="540" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>LACHAP</text><text class="title fr" x="140" y="632" fill="#E4472F" text-anchor="start">CELUI O&#217; ILS SE MARIENT</text><text class="title en" x="140" y="632" fill="#E4472F" text-anchor="start">THE ONE WITH THE WEDDING</text><line x1="140" y1="700" x2="960" y2="700" stroke="#17201F" stroke-opacity=".28" stroke-width="1.6"/><text class="soon fr" x="140" y="760" fill="#14524E" text-anchor="start">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="140" y="760" fill="#14524E" text-anchor="start">A NEW SERIES &#8226; COMING SOON</text><text class="date fr" x="140" y="842" fill="#17201F" text-anchor="start">VENDREDI 7 MAI 2027</text><text class="date en" x="140" y="842" fill="#17201F" text-anchor="start">FRIDAY 7 MAY 2027</text><text class="place fr" x="140" y="894" fill="#14524E" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="140" y="894" fill="#14524E" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="fine fr" data-n="formal" x="140" y="962" fill="#17201F" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="140" y="962" fill="#17201F" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="140" y="962" fill="#17201F" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="140" y="962" fill="#17201F" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="140" y="1000" fill="#17201F" text-anchor="start">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="140" y="1000" fill="#17201F" text-anchor="start">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="sobre">Télécharger &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="sobre">Version imprimeur</button>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Proposition 2 &bull; équilibrée</p>
+    <div class="stage"><svg id="equi" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, version equilibree, A6 paysage"><style>
+    text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; }
+    .nm    { font-weight: 700; letter-spacing: 11px; }
+    .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; }
+    .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; }
+    .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .huge-date { font-size: 112px; letter-spacing: 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .title-s { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+    .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; }
+    .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .55; }
+    .verso { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+
+    svg[data-l="fr"] .en, svg[data-l="en"] .fr { display: none; }
+    svg[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    svg[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    svg[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#F4F0E6"/><rect x="1000" y="0" width="540" height="1110" fill="#14524E"/><g fill="#E4472F"><circle cx="36.0" cy="-50.0" r="47.0"/><circle cx="101.8" cy="-12.0" r="47.0"/><circle cx="101.8" cy="64.0" r="47.0"/><circle cx="36.0" cy="102.0" r="47.0"/><circle cx="-29.8" cy="64.0" r="47.0"/><circle cx="-29.8" cy="-12.0" r="47.0"/></g><circle cx="36.0" cy="26.0" r="60.0" fill="#E9B23C"/><g fill="#E9B23C"><circle cx="1400.0" cy="730.0" r="93.0"/><circle cx="1529.9" cy="805.0" r="93.0"/><circle cx="1529.9" cy="955.0" r="93.0"/><circle cx="1400.0" cy="1030.0" r="93.0"/><circle cx="1270.1" cy="955.0" r="93.0"/><circle cx="1270.1" cy="805.0" r="93.0"/></g><circle cx="1400.0" cy="880.0" r="119.0" fill="#E4472F"/><g fill="#E4472F"><circle cx="1075.0" cy="95.0" r="127.0"/><circle cx="1252.5" cy="197.5" r="127.0"/><circle cx="1252.5" cy="402.5" r="127.0"/><circle cx="1075.0" cy="505.0" r="127.0"/><circle cx="897.5" cy="402.5" r="127.0"/><circle cx="897.5" cy="197.5" r="127.0"/></g><circle cx="1075.0" cy="300.0" r="163.0" fill="#E9B23C"/><text class="prod fr" x="140" y="268" fill="#14524E" text-anchor="start">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="140" y="268" fill="#14524E" text-anchor="start">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="430" fill="#17201F">ARNAUD</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="540" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>EMILY</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="430" fill="#17201F">CHAPS</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="540" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>EMY</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="430" fill="#17201F">ELMTREE</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="540" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>LACHAP</text><text class="title fr" x="140" y="632" fill="#E4472F" text-anchor="start">CELUI O&#217; ILS SE MARIENT</text><text class="title en" x="140" y="632" fill="#E4472F" text-anchor="start">THE ONE WITH THE WEDDING</text><line x1="140" y1="700" x2="960" y2="700" stroke="#17201F" stroke-opacity=".3" stroke-width="1.6"/><text class="soon fr" x="140" y="760" fill="#14524E" text-anchor="start">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="140" y="760" fill="#14524E" text-anchor="start">A NEW SERIES &#8226; COMING SOON</text><text class="date fr" x="140" y="842" fill="#17201F" text-anchor="start">VENDREDI 7 MAI 2027</text><text class="date en" x="140" y="842" fill="#17201F" text-anchor="start">FRIDAY 7 MAY 2027</text><text class="place fr" x="140" y="894" fill="#14524E" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="140" y="894" fill="#14524E" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="fine fr" data-n="formal" x="140" y="962" fill="#17201F" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="140" y="962" fill="#17201F" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="140" y="962" fill="#17201F" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="140" y="962" fill="#17201F" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="140" y="1000" fill="#17201F" text-anchor="start">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="140" y="1000" fill="#17201F" text-anchor="start">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="equi">Télécharger &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="equi">Version imprimeur</button>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Proposition 3 &bull; plus fleurie, fond vert</p>
+    <div class="stage"><svg id="satu" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, version saturee, A6 paysage"><style>
+    text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; }
+    .nm    { font-weight: 700; letter-spacing: 11px; }
+    .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; }
+    .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; }
+    .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .huge-date { font-size: 112px; letter-spacing: 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .title-s { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+    .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; }
+    .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .55; }
+    .verso { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+
+    svg[data-l="fr"] .en, svg[data-l="en"] .fr { display: none; }
+    svg[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    svg[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    svg[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#14524E"/><g fill="#E9B23C"><circle cx="26.0" cy="-62.0" r="48.0"/><circle cx="93.5" cy="-23.0" r="48.0"/><circle cx="93.5" cy="55.0" r="48.0"/><circle cx="26.0" cy="94.0" r="48.0"/><circle cx="-41.5" cy="55.0" r="48.0"/><circle cx="-41.5" cy="-23.0" r="48.0"/></g><circle cx="26.0" cy="16.0" r="62.0" fill="#E4472F"/><g fill="#E9B23C"><circle cx="1200.0" cy="62.0" r="55.0"/><circle cx="1276.2" cy="106.0" r="55.0"/><circle cx="1276.2" cy="194.0" r="55.0"/><circle cx="1200.0" cy="238.0" r="55.0"/><circle cx="1123.8" cy="194.0" r="55.0"/><circle cx="1123.8" cy="106.0" r="55.0"/></g><circle cx="1200.0" cy="150.0" r="70.0" fill="#E4472F"/><g fill="#E9B23C"><circle cx="1520.0" cy="32.0" r="79.0"/><circle cx="1630.9" cy="96.0" r="79.0"/><circle cx="1630.9" cy="224.0" r="79.0"/><circle cx="1520.0" cy="288.0" r="79.0"/><circle cx="1409.1" cy="224.0" r="79.0"/><circle cx="1409.1" cy="96.0" r="79.0"/></g><circle cx="1520.0" cy="160.0" r="101.0" fill="#E4472F"/><g fill="#E4472F"><circle cx="1130.0" cy="742.0" r="73.0"/><circle cx="1232.2" cy="801.0" r="73.0"/><circle cx="1232.2" cy="919.0" r="73.0"/><circle cx="1130.0" cy="978.0" r="73.0"/><circle cx="1027.8" cy="919.0" r="73.0"/><circle cx="1027.8" cy="801.0" r="73.0"/></g><circle cx="1130.0" cy="860.0" r="94.0" fill="#E9B23C"/><g fill="#E9B23C"><circle cx="1490.0" cy="622.0" r="98.0"/><circle cx="1626.8" cy="701.0" r="98.0"/><circle cx="1626.8" cy="859.0" r="98.0"/><circle cx="1490.0" cy="938.0" r="98.0"/><circle cx="1353.2" cy="859.0" r="98.0"/><circle cx="1353.2" cy="701.0" r="98.0"/></g><circle cx="1490.0" cy="780.0" r="125.0" fill="#14524E"/><g fill="#E4472F"><circle cx="1340.0" cy="172.0" r="129.0"/><circle cx="1520.1" cy="276.0" r="129.0"/><circle cx="1520.1" cy="484.0" r="129.0"/><circle cx="1340.0" cy="588.0" r="129.0"/><circle cx="1159.9" cy="484.0" r="129.0"/><circle cx="1159.9" cy="276.0" r="129.0"/></g><circle cx="1340.0" cy="380.0" r="165.0" fill="#E9B23C"/><text class="prod fr" x="140" y="268" fill="#E9B23C" text-anchor="start">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="140" y="268" fill="#E9B23C" text-anchor="start">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="430" fill="#F4F0E6">ARNAUD</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="540" fill="#F4F0E6"><tspan fill="#E4472F">&amp; </tspan>EMILY</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="430" fill="#F4F0E6">CHAPS</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="540" fill="#F4F0E6"><tspan fill="#E4472F">&amp; </tspan>EMY</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="430" fill="#F4F0E6">ELMTREE</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="540" fill="#F4F0E6"><tspan fill="#E4472F">&amp; </tspan>LACHAP</text><text class="title fr" x="140" y="632" fill="#E9B23C" text-anchor="start">CELUI O&#217; ILS SE MARIENT</text><text class="title en" x="140" y="632" fill="#E9B23C" text-anchor="start">THE ONE WITH THE WEDDING</text><line x1="140" y1="700" x2="960" y2="700" stroke="#F4F0E6" stroke-opacity=".3" stroke-width="1.6"/><text class="soon fr" x="140" y="760" fill="#E9B23C" text-anchor="start">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="140" y="760" fill="#E9B23C" text-anchor="start">A NEW SERIES &#8226; COMING SOON</text><text class="date fr" x="140" y="842" fill="#F4F0E6" text-anchor="start">VENDREDI 7 MAI 2027</text><text class="date en" x="140" y="842" fill="#F4F0E6" text-anchor="start">FRIDAY 7 MAY 2027</text><text class="place fr" x="140" y="894" fill="#E9B23C" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="140" y="894" fill="#E9B23C" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="fine fr" data-n="formal" x="140" y="962" fill="#F4F0E6" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="140" y="962" fill="#F4F0E6" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="140" y="962" fill="#F4F0E6" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="140" y="962" fill="#F4F0E6" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="140" y="1000" fill="#F4F0E6" text-anchor="start">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="140" y="1000" fill="#F4F0E6" text-anchor="start">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="satu">Télécharger &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="satu">Version imprimeur</button>
+    </div>
+  </section>
+
+  <h2 class="family">Autres compositions</h2>
+  <p class="intro">Les trois ci-dessus ont la même composition et ne diffèrent que par la dose. Ces quatre-là changent d'organisation.</p>
+
+  <section class="piece">
+    <p class="piece-tag">Proposition 4 &bull; la fleur remplace le &amp;</p>
+    <div class="stage"><svg id="fleur" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, la fleur remplace le et commercial, A6 paysage"><style>
+    text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; }
+    .nm    { font-weight: 700; letter-spacing: 11px; }
+    .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; }
+    .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; }
+    .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .huge-date { font-size: 112px; letter-spacing: 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .title-s { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+    .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; }
+    .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .55; }
+    .verso { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+
+    svg[data-l="fr"] .en, svg[data-l="en"] .fr { display: none; }
+    svg[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    svg[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    svg[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#F4F0E6"/><g fill="#E9B23C"><circle cx="30.0" cy="960.0" r="68.0"/><circle cx="125.3" cy="1015.0" r="68.0"/><circle cx="125.3" cy="1125.0" r="68.0"/><circle cx="30.0" cy="1180.0" r="68.0"/><circle cx="-65.3" cy="1125.0" r="68.0"/><circle cx="-65.3" cy="1015.0" r="68.0"/></g><circle cx="30.0" cy="1070.0" r="87.0" fill="#E4472F"/><g fill="#E4472F"><circle cx="1510.0" cy="940.0" r="74.0"/><circle cx="1613.9" cy="1000.0" r="74.0"/><circle cx="1613.9" cy="1120.0" r="74.0"/><circle cx="1510.0" cy="1180.0" r="74.0"/><circle cx="1406.1" cy="1120.0" r="74.0"/><circle cx="1406.1" cy="1000.0" r="74.0"/></g><circle cx="1510.0" cy="1060.0" r="95.0" fill="#E9B23C"/><text class="prod fr" x="770.0" y="250" fill="#14524E" text-anchor="middle">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="770.0" y="250" fill="#14524E" text-anchor="middle">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:84px" x="681.0" y="450" fill="#17201F" text-anchor="end">ARNAUD</text><text class="nm" data-n="formal" style="font-size:84px" x="870.0" y="450" fill="#17201F" text-anchor="start">EMILY</text><text class="nm" data-n="nick" style="font-size:84px" x="681.0" y="450" fill="#17201F" text-anchor="end">CHAPS</text><text class="nm" data-n="nick" style="font-size:84px" x="870.0" y="450" fill="#17201F" text-anchor="start">EMY</text><text class="nm" data-n="handle" style="font-size:84px" x="681.0" y="450" fill="#17201F" text-anchor="end">ELMTREE</text><text class="nm" data-n="handle" style="font-size:84px" x="870.0" y="450" fill="#17201F" text-anchor="start">LACHAP</text><g fill="#E4472F"><circle cx="770.0" cy="374.0" r="29.0"/><circle cx="809.8" cy="397.0" r="29.0"/><circle cx="809.8" cy="443.0" r="29.0"/><circle cx="770.0" cy="466.0" r="29.0"/><circle cx="730.2" cy="443.0" r="29.0"/><circle cx="730.2" cy="397.0" r="29.0"/></g><circle cx="770.0" cy="420.0" r="37.0" fill="#E9B23C"/><text class="title fr" x="770.0" y="596" fill="#E4472F" text-anchor="middle">CELUI O&#217; ILS SE MARIENT</text><text class="title en" x="770.0" y="596" fill="#E4472F" text-anchor="middle">THE ONE WITH THE WEDDING</text><line x1="500" y1="664" x2="1040" y2="664" stroke="#17201F" stroke-opacity=".3" stroke-width="1.6"/><text class="soon fr" x="770.0" y="724" fill="#14524E" text-anchor="middle">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="770.0" y="724" fill="#14524E" text-anchor="middle">A NEW SERIES &#8226; COMING SOON</text><text class="date fr" x="770.0" y="806" fill="#17201F" text-anchor="middle">VENDREDI 7 MAI 2027</text><text class="date en" x="770.0" y="806" fill="#17201F" text-anchor="middle">FRIDAY 7 MAY 2027</text><text class="place fr" x="770.0" y="856" fill="#14524E" text-anchor="middle">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="770.0" y="856" fill="#14524E" text-anchor="middle">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="fine fr" data-n="formal" x="770.0" y="946" fill="#17201F" text-anchor="middle">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="770.0" y="946" fill="#17201F" text-anchor="middle">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="770.0" y="946" fill="#17201F" text-anchor="middle">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="770.0" y="946" fill="#17201F" text-anchor="middle">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="770.0" y="984" fill="#17201F" text-anchor="middle">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="770.0" y="984" fill="#17201F" text-anchor="middle">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="fleur">Télécharger &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="fleur">Version imprimeur</button>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Proposition 5 &bull; la date en vedette</p>
+    <div class="stage"><svg id="grosdate" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, la date en vedette, A6 paysage"><style>
+    text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; }
+    .nm    { font-weight: 700; letter-spacing: 11px; }
+    .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; }
+    .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; }
+    .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .huge-date { font-size: 112px; letter-spacing: 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .title-s { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+    .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; }
+    .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .55; }
+    .verso { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+
+    svg[data-l="fr"] .en, svg[data-l="en"] .fr { display: none; }
+    svg[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    svg[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    svg[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#F4F0E6"/><g fill="#E9B23C"><circle cx="1470.0" cy="310.0" r="155.0"/><circle cx="1686.5" cy="435.0" r="155.0"/><circle cx="1686.5" cy="685.0" r="155.0"/><circle cx="1470.0" cy="810.0" r="155.0"/><circle cx="1253.5" cy="685.0" r="155.0"/><circle cx="1253.5" cy="435.0" r="155.0"/></g><circle cx="1470.0" cy="560.0" r="198.0" fill="#E4472F"/><text class="prod fr" x="140" y="250" fill="#14524E" text-anchor="start">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="140" y="250" fill="#14524E" text-anchor="start">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:46px" x="140" y="330" fill="#17201F">ARNAUD<tspan fill="#E4472F"> &amp; </tspan>EMILY</text><text class="nm" data-n="nick" style="font-size:46px" x="140" y="330" fill="#17201F">CHAPS<tspan fill="#E4472F"> &amp; </tspan>EMY</text><text class="nm" data-n="handle" style="font-size:46px" x="140" y="330" fill="#17201F">ELMTREE<tspan fill="#E4472F"> &amp; </tspan>LACHAP</text><text class="title-s fr" x="140" y="386" fill="#E4472F" text-anchor="start">CELUI O&#217; ILS SE MARIENT</text><text class="title-s en" x="140" y="386" fill="#E4472F" text-anchor="start">THE ONE WITH THE WEDDING</text><line x1="140" y1="450" x2="960" y2="450" stroke="#17201F" stroke-opacity=".3" stroke-width="1.6"/><text class="huge-date fr" x="140" y="620" fill="#17201F" text-anchor="start">VENDREDI 7</text><text class="huge-date en" x="140" y="620" fill="#17201F" text-anchor="start">FRIDAY 7</text><text class="huge-date fr" x="140" y="740" fill="#E4472F" text-anchor="start">MAI 2027</text><text class="huge-date en" x="140" y="740" fill="#E4472F" text-anchor="start">MAY 2027</text><text class="place fr" x="140" y="806" fill="#14524E" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="140" y="806" fill="#14524E" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="soon fr" x="140" y="856" fill="#14524E" text-anchor="start">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="140" y="856" fill="#14524E" text-anchor="start">A NEW SERIES &#8226; COMING SOON</text><text class="fine fr" data-n="formal" x="140" y="940" fill="#17201F" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="140" y="940" fill="#17201F" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="140" y="940" fill="#17201F" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="140" y="940" fill="#17201F" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="140" y="978" fill="#17201F" text-anchor="start">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="140" y="978" fill="#17201F" text-anchor="start">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="grosdate">Télécharger &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="grosdate">Version imprimeur</button>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Proposition 6 &bull; l'horizon fleuri</p>
+    <div class="stage"><svg id="horizon" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, horizon fleuri, A6 paysage"><style>
+    text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; }
+    .nm    { font-weight: 700; letter-spacing: 11px; }
+    .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; }
+    .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; }
+    .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .huge-date { font-size: 112px; letter-spacing: 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .title-s { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+    .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; }
+    .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .55; }
+    .verso { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+
+    svg[data-l="fr"] .en, svg[data-l="en"] .fr { display: none; }
+    svg[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    svg[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    svg[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#F4F0E6"/><g fill="#E4472F"><circle cx="70.0" cy="1032.0" r="73.0"/><circle cx="172.2" cy="1091.0" r="73.0"/><circle cx="172.2" cy="1209.0" r="73.0"/><circle cx="70.0" cy="1268.0" r="73.0"/><circle cx="-32.2" cy="1209.0" r="73.0"/><circle cx="-32.2" cy="1091.0" r="73.0"/></g><circle cx="70.0" cy="1150.0" r="94.0" fill="#E9B23C"/><g fill="#E9B23C"><circle cx="320.0" cy="1046.0" r="64.0"/><circle cx="410.1" cy="1098.0" r="64.0"/><circle cx="410.1" cy="1202.0" r="64.0"/><circle cx="320.0" cy="1254.0" r="64.0"/><circle cx="229.9" cy="1202.0" r="64.0"/><circle cx="229.9" cy="1098.0" r="64.0"/></g><circle cx="320.0" cy="1150.0" r="83.0" fill="#E4472F"/><g fill="#E4472F"><circle cx="570.0" cy="1025.0" r="77.0"/><circle cx="678.3" cy="1087.5" r="77.0"/><circle cx="678.3" cy="1212.5" r="77.0"/><circle cx="570.0" cy="1275.0" r="77.0"/><circle cx="461.7" cy="1212.5" r="77.0"/><circle cx="461.7" cy="1087.5" r="77.0"/></g><circle cx="570.0" cy="1150.0" r="100.0" fill="#E9B23C"/><g fill="#E9B23C"><circle cx="830.0" cy="1050.0" r="62.0"/><circle cx="916.6" cy="1100.0" r="62.0"/><circle cx="916.6" cy="1200.0" r="62.0"/><circle cx="830.0" cy="1250.0" r="62.0"/><circle cx="743.4" cy="1200.0" r="62.0"/><circle cx="743.4" cy="1100.0" r="62.0"/></g><circle cx="830.0" cy="1150.0" r="80.0" fill="#14524E"/><g fill="#E4472F"><circle cx="1090.0" cy="1028.0" r="75.0"/><circle cx="1195.7" cy="1089.0" r="75.0"/><circle cx="1195.7" cy="1211.0" r="75.0"/><circle cx="1090.0" cy="1272.0" r="75.0"/><circle cx="984.3" cy="1211.0" r="75.0"/><circle cx="984.3" cy="1089.0" r="75.0"/></g><circle cx="1090.0" cy="1150.0" r="97.0" fill="#E9B23C"/><g fill="#E9B23C"><circle cx="1350.0" cy="1042.0" r="66.0"/><circle cx="1443.5" cy="1096.0" r="66.0"/><circle cx="1443.5" cy="1204.0" r="66.0"/><circle cx="1350.0" cy="1258.0" r="66.0"/><circle cx="1256.5" cy="1204.0" r="66.0"/><circle cx="1256.5" cy="1096.0" r="66.0"/></g><circle cx="1350.0" cy="1150.0" r="86.0" fill="#E4472F"/><g fill="#E4472F"><circle cx="1540.0" cy="1032.0" r="73.0"/><circle cx="1642.2" cy="1091.0" r="73.0"/><circle cx="1642.2" cy="1209.0" r="73.0"/><circle cx="1540.0" cy="1268.0" r="73.0"/><circle cx="1437.8" cy="1209.0" r="73.0"/><circle cx="1437.8" cy="1091.0" r="73.0"/></g><circle cx="1540.0" cy="1150.0" r="94.0" fill="#E9B23C"/><text class="prod fr" x="140" y="230" fill="#14524E" text-anchor="start">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="140" y="230" fill="#14524E" text-anchor="start">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:88px" x="140" y="370" fill="#17201F">ARNAUD</text><text class="nm" data-n="formal" style="font-size:88px" x="140" y="478" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>EMILY</text><text class="nm" data-n="nick" style="font-size:88px" x="140" y="370" fill="#17201F">CHAPS</text><text class="nm" data-n="nick" style="font-size:88px" x="140" y="478" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>EMY</text><text class="nm" data-n="handle" style="font-size:88px" x="140" y="370" fill="#17201F">ELMTREE</text><text class="nm" data-n="handle" style="font-size:88px" x="140" y="478" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>LACHAP</text><text class="title fr" x="140" y="570" fill="#E4472F" text-anchor="start">CELUI O&#217; ILS SE MARIENT</text><text class="title en" x="140" y="570" fill="#E4472F" text-anchor="start">THE ONE WITH THE WEDDING</text><line x1="140" y1="628" x2="960" y2="628" stroke="#17201F" stroke-opacity=".3" stroke-width="1.6"/><text class="soon fr" x="140" y="684" fill="#14524E" text-anchor="start">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="140" y="684" fill="#14524E" text-anchor="start">A NEW SERIES &#8226; COMING SOON</text><text class="date fr" x="140" y="760" fill="#17201F" text-anchor="start">VENDREDI 7 MAI 2027</text><text class="date en" x="140" y="760" fill="#17201F" text-anchor="start">FRIDAY 7 MAY 2027</text><text class="place fr" x="140" y="810" fill="#14524E" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="140" y="810" fill="#14524E" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="fine fr" data-n="formal" x="140" y="870" fill="#17201F" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="140" y="870" fill="#17201F" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="140" y="870" fill="#17201F" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="140" y="870" fill="#17201F" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="140" y="906" fill="#17201F" text-anchor="start">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="140" y="906" fill="#17201F" text-anchor="start">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="horizon">Télécharger &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="horizon">Version imprimeur</button>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Proposition 7 &bull; presque tout en typo</p>
+    <div class="stage"><svg id="typo" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, presque tout en typographie, A6 paysage"><style>
+    text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; }
+    .nm    { font-weight: 700; letter-spacing: 11px; }
+    .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; }
+    .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; }
+    .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .huge-date { font-size: 112px; letter-spacing: 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .title-s { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+    .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; }
+    .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .55; }
+    .verso { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+
+    svg[data-l="fr"] .en, svg[data-l="en"] .fr { display: none; }
+    svg[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    svg[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    svg[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#F4F0E6"/><g fill="#E4472F"><circle cx="1400.0" cy="206.0" r="28.0"/><circle cx="1438.1" cy="228.0" r="28.0"/><circle cx="1438.1" cy="272.0" r="28.0"/><circle cx="1400.0" cy="294.0" r="28.0"/><circle cx="1361.9" cy="272.0" r="28.0"/><circle cx="1361.9" cy="228.0" r="28.0"/></g><circle cx="1400.0" cy="250.0" r="36.0" fill="#E9B23C"/><text class="prod fr" x="140" y="230" fill="#14524E" text-anchor="start">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="140" y="230" fill="#14524E" text-anchor="start">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:116px" x="140" y="420" fill="#17201F">ARNAUD</text><text class="nm" data-n="formal" style="font-size:116px" x="140" y="560" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>EMILY</text><text class="nm" data-n="nick" style="font-size:116px" x="140" y="420" fill="#17201F">CHAPS</text><text class="nm" data-n="nick" style="font-size:116px" x="140" y="560" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>EMY</text><text class="nm" data-n="handle" style="font-size:116px" x="140" y="420" fill="#17201F">ELMTREE</text><text class="nm" data-n="handle" style="font-size:116px" x="140" y="560" fill="#17201F"><tspan fill="#E4472F">&amp; </tspan>LACHAP</text><text class="title fr" x="140" y="660" fill="#E4472F" text-anchor="start">CELUI O&#217; ILS SE MARIENT</text><text class="title en" x="140" y="660" fill="#E4472F" text-anchor="start">THE ONE WITH THE WEDDING</text><line x1="140" y1="730" x2="1430" y2="730" stroke="#17201F" stroke-opacity=".3" stroke-width="1.6"/><text class="soon fr" x="140" y="786" fill="#14524E" text-anchor="start">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="140" y="786" fill="#14524E" text-anchor="start">A NEW SERIES &#8226; COMING SOON</text><text class="date fr" x="140" y="852" fill="#17201F" text-anchor="start">VENDREDI 7 MAI 2027</text><text class="date en" x="140" y="852" fill="#17201F" text-anchor="start">FRIDAY 7 MAY 2027</text><text class="place fr" x="1430" y="900" fill="#14524E" text-anchor="end">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="1430" y="900" fill="#14524E" text-anchor="end">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="fine fr" data-n="formal" x="140" y="946" fill="#17201F" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="140" y="946" fill="#17201F" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="140" y="946" fill="#17201F" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="140" y="946" fill="#17201F" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="140" y="984" fill="#17201F" text-anchor="start">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="140" y="984" fill="#17201F" text-anchor="start">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="typo">Télécharger &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="typo">Version imprimeur</button>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Le verso &bull; commun aux sept ci-dessus</p>
+    <div class="stage"><svg id="verso" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Verso de la carte, A6 paysage"><style>
+    text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; }
+    .nm    { font-weight: 700; letter-spacing: 11px; }
+    .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; }
+    .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; }
+    .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .huge-date { font-size: 112px; letter-spacing: 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .title-s { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+    .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; }
+    .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .55; }
+    .verso { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+
+    svg[data-l="fr"] .en, svg[data-l="en"] .fr { display: none; }
+    svg[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    svg[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    svg[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#14524E"/><g fill="#E9B23C"><circle cx="150.0" cy="-26.0" r="109.0"/><circle cx="302.4" cy="62.0" r="109.0"/><circle cx="302.4" cy="238.0" r="109.0"/><circle cx="150.0" cy="326.0" r="109.0"/><circle cx="-2.4" cy="238.0" r="109.0"/><circle cx="-2.4" cy="62.0" r="109.0"/></g><circle cx="150.0" cy="150.0" r="140.0" fill="#E4472F"/><g fill="#E4472F"><circle cx="1420.0" cy="772.0" r="129.0"/><circle cx="1600.1" cy="876.0" r="129.0"/><circle cx="1600.1" cy="1084.0" r="129.0"/><circle cx="1420.0" cy="1188.0" r="129.0"/><circle cx="1239.9" cy="1084.0" r="129.0"/><circle cx="1239.9" cy="876.0" r="129.0"/></g><circle cx="1420.0" cy="980.0" r="166.0" fill="#E9B23C"/><g fill="#E4472F"><circle cx="1180.0" cy="114.0" r="60.0"/><circle cx="1263.1" cy="162.0" r="60.0"/><circle cx="1263.1" cy="258.0" r="60.0"/><circle cx="1180.0" cy="306.0" r="60.0"/><circle cx="1096.9" cy="258.0" r="60.0"/><circle cx="1096.9" cy="162.0" r="60.0"/></g><circle cx="1180.0" cy="210.0" r="77.0" fill="#E9B23C"/><text class="verso fr" x="770.0" y="512" fill="#F4F0E6" text-anchor="middle">L&#8217;INVITATION SUIVRA</text><text class="verso en" x="770.0" y="512" fill="#F4F0E6" text-anchor="middle">THE INVITATION WILL FOLLOW</text><text class="prod fr" x="770.0" y="578" fill="#E9B23C" text-anchor="middle">CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN, MAIS CONSERVEZ-LA.</text><text class="prod en" x="770.0" y="578" fill="#E9B23C" text-anchor="middle">KEEP THIS CARD. IT SERVES NO PURPOSE, BUT KEEP IT.</text></svg></div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="verso">Télécharger &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="verso">Version imprimeur</button>
+    </div>
+  </section>
+
+  <h2 class="family">Autres couleurs, autres fleurs</h2>
+  <p class="intro">Les sept ci-dessus partagent la même palette et la même fleur ronde. Ces quatre-là reprennent la composition sobre et changent <b>les couleurs et la forme de la fleur</b>, pour voir ce que chaque variable fait vraiment. <b>Chacune a son propre verso</b>, montré à côté de son recto : un dos vert n'aurait aucun sens derrière un recto terre cuite.</p>
+
+  <section class="piece">
+    <p class="piece-tag">Palette &bull; Dahlia framboise</p>
+    <div class="two-up">
+      <div>
+        <p class="side-tag">Recto</p>
+        <div class="stage"><svg id="dahlia" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, palette Dahlia framboise, A6 paysage"><style>
+    #dahlia text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    #dahlia .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; fill: #8A2C46; }
+    #dahlia .nm    { font-weight: 700; letter-spacing: 11px; fill: #2B2226; }
+    #dahlia .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; fill: #B33A5B; }
+    #dahlia .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; fill: #8A2C46; }
+    #dahlia .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; fill: #2B2226; }
+    #dahlia .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; fill: #8A2C46; }
+    #dahlia .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .58; fill: #2B2226; }
+
+    #dahlia[data-l="fr"] .en, #dahlia[data-l="en"] .fr { display: none; }
+    #dahlia[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    #dahlia[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    #dahlia[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#F5F0E8"/><g fill="#B33A5B"><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(-90.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(-64.29 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(-38.57 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(-12.86 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(12.86 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(38.57 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(64.29 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(90.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(115.71 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(141.43 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(167.14 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(192.86 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(218.57 1462.0 556.0)"/><ellipse cx="1462.0" cy="334.0" rx="45.0" ry="120.0" transform="rotate(244.29 1462.0 556.0)"/></g><g fill="#E27A62"><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(-75.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(-45.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(-15.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(15.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(45.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(75.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(105.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(135.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(165.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(195.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(225.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="400.0" rx="36.0" ry="93.0" transform="rotate(255.00 1462.0 556.0)"/></g><g fill="#B33A5B"><ellipse cx="1462.0" cy="457.0" rx="28.5" ry="66.0" transform="rotate(-90.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="457.0" rx="28.5" ry="66.0" transform="rotate(-54.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="457.0" rx="28.5" ry="66.0" transform="rotate(-18.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="457.0" rx="28.5" ry="66.0" transform="rotate(18.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="457.0" rx="28.5" ry="66.0" transform="rotate(54.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="457.0" rx="28.5" ry="66.0" transform="rotate(90.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="457.0" rx="28.5" ry="66.0" transform="rotate(126.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="457.0" rx="28.5" ry="66.0" transform="rotate(162.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="457.0" rx="28.5" ry="66.0" transform="rotate(198.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="457.0" rx="28.5" ry="66.0" transform="rotate(234.00 1462.0 556.0)"/></g><g fill="#E27A62"><ellipse cx="1462.0" cy="502.0" rx="21.0" ry="42.0" transform="rotate(-67.50 1462.0 556.0)"/><ellipse cx="1462.0" cy="502.0" rx="21.0" ry="42.0" transform="rotate(-22.50 1462.0 556.0)"/><ellipse cx="1462.0" cy="502.0" rx="21.0" ry="42.0" transform="rotate(22.50 1462.0 556.0)"/><ellipse cx="1462.0" cy="502.0" rx="21.0" ry="42.0" transform="rotate(67.50 1462.0 556.0)"/><ellipse cx="1462.0" cy="502.0" rx="21.0" ry="42.0" transform="rotate(112.50 1462.0 556.0)"/><ellipse cx="1462.0" cy="502.0" rx="21.0" ry="42.0" transform="rotate(157.50 1462.0 556.0)"/><ellipse cx="1462.0" cy="502.0" rx="21.0" ry="42.0" transform="rotate(202.50 1462.0 556.0)"/><ellipse cx="1462.0" cy="502.0" rx="21.0" ry="42.0" transform="rotate(247.50 1462.0 556.0)"/></g><circle cx="1462.0" cy="556.0" r="31.5" fill="#B33A5B"/><text class="prod fr" x="140" y="268" text-anchor="start">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="140" y="268" text-anchor="start">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="430">ARNAUD</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="540"><tspan fill="#E27A62">&amp; </tspan>EMILY</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="430">CHAPS</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="540"><tspan fill="#E27A62">&amp; </tspan>EMY</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="430">ELMTREE</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="540"><tspan fill="#E27A62">&amp; </tspan>LACHAP</text><text class="title fr" x="140" y="632" text-anchor="start">CELUI O&#217; ILS SE MARIENT</text><text class="title en" x="140" y="632" text-anchor="start">THE ONE WITH THE WEDDING</text><line x1="140" y1="700" x2="960" y2="700" stroke="#2B2226" stroke-opacity=".3" stroke-width="1.6"/><text class="soon fr" x="140" y="760" text-anchor="start">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="140" y="760" text-anchor="start">A NEW SERIES &#8226; COMING SOON</text><text class="date fr" x="140" y="842" text-anchor="start">VENDREDI 7 MAI 2027</text><text class="date en" x="140" y="842" text-anchor="start">FRIDAY 7 MAY 2027</text><text class="place fr" x="140" y="894" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="140" y="894" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="fine fr" data-n="formal" x="140" y="962" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="140" y="962" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="140" y="962" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="140" y="962" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="140" y="1000" text-anchor="start">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="140" y="1000" text-anchor="start">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+        <div class="actions">
+          <button class="btn" type="button" data-png="dahlia">Télécharger</button>
+          <button class="btn ghost" type="button" data-svg="dahlia">Imprimeur</button>
+        </div>
+      </div>
+      <div>
+        <p class="side-tag">Verso</p>
+        <div class="stage"><svg id="dahliav" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Verso de la carte, palette Dahlia framboise"><style>
+    #dahliav text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    #dahliav .vt { font-size: 26px; letter-spacing: 9px; font-weight: 500; fill: #F4F0E6; }
+    #dahliav .vs { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; fill: #F4F0E6; fill-opacity: .82; }
+    #dahliav[data-l="fr"] .en, #dahliav[data-l="en"] .fr { display: none; }
+</style><rect width="1540" height="1110" fill="#7A1F38"/><g fill="#F4F0E6"><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(-90.00 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(-64.29 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(-38.57 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(-12.86 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(12.86 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(38.57 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(64.29 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(90.00 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(115.71 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(141.43 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(167.14 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(192.86 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(218.57 120.0 130.0)"/><ellipse cx="120.0" cy="4.2" rx="25.5" ry="68.0" transform="rotate(244.29 120.0 130.0)"/></g><g fill="#E27A62"><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(-75.00 120.0 130.0)"/><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(-45.00 120.0 130.0)"/><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(-15.00 120.0 130.0)"/><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(15.00 120.0 130.0)"/><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(45.00 120.0 130.0)"/><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(75.00 120.0 130.0)"/><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(105.00 120.0 130.0)"/><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(135.00 120.0 130.0)"/><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(165.00 120.0 130.0)"/><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(195.00 120.0 130.0)"/><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(225.00 120.0 130.0)"/><ellipse cx="120.0" cy="41.6" rx="20.4" ry="52.7" transform="rotate(255.00 120.0 130.0)"/></g><g fill="#F4F0E6"><ellipse cx="120.0" cy="73.9" rx="16.1" ry="37.4" transform="rotate(-90.00 120.0 130.0)"/><ellipse cx="120.0" cy="73.9" rx="16.1" ry="37.4" transform="rotate(-54.00 120.0 130.0)"/><ellipse cx="120.0" cy="73.9" rx="16.1" ry="37.4" transform="rotate(-18.00 120.0 130.0)"/><ellipse cx="120.0" cy="73.9" rx="16.1" ry="37.4" transform="rotate(18.00 120.0 130.0)"/><ellipse cx="120.0" cy="73.9" rx="16.1" ry="37.4" transform="rotate(54.00 120.0 130.0)"/><ellipse cx="120.0" cy="73.9" rx="16.1" ry="37.4" transform="rotate(90.00 120.0 130.0)"/><ellipse cx="120.0" cy="73.9" rx="16.1" ry="37.4" transform="rotate(126.00 120.0 130.0)"/><ellipse cx="120.0" cy="73.9" rx="16.1" ry="37.4" transform="rotate(162.00 120.0 130.0)"/><ellipse cx="120.0" cy="73.9" rx="16.1" ry="37.4" transform="rotate(198.00 120.0 130.0)"/><ellipse cx="120.0" cy="73.9" rx="16.1" ry="37.4" transform="rotate(234.00 120.0 130.0)"/></g><g fill="#E27A62"><ellipse cx="120.0" cy="99.4" rx="11.9" ry="23.8" transform="rotate(-67.50 120.0 130.0)"/><ellipse cx="120.0" cy="99.4" rx="11.9" ry="23.8" transform="rotate(-22.50 120.0 130.0)"/><ellipse cx="120.0" cy="99.4" rx="11.9" ry="23.8" transform="rotate(22.50 120.0 130.0)"/><ellipse cx="120.0" cy="99.4" rx="11.9" ry="23.8" transform="rotate(67.50 120.0 130.0)"/><ellipse cx="120.0" cy="99.4" rx="11.9" ry="23.8" transform="rotate(112.50 120.0 130.0)"/><ellipse cx="120.0" cy="99.4" rx="11.9" ry="23.8" transform="rotate(157.50 120.0 130.0)"/><ellipse cx="120.0" cy="99.4" rx="11.9" ry="23.8" transform="rotate(202.50 120.0 130.0)"/><ellipse cx="120.0" cy="99.4" rx="11.9" ry="23.8" transform="rotate(247.50 120.0 130.0)"/></g><circle cx="120.0" cy="130.0" r="17.8" fill="#F4F0E6"/><g fill="#E27A62"><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(-90.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(-64.29 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(-38.57 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(-12.86 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(12.86 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(38.57 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(64.29 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(90.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(115.71 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(141.43 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(167.14 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(192.86 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(218.57 1440.0 980.0)"/><ellipse cx="1440.0" cy="832.0" rx="30.0" ry="80.0" transform="rotate(244.29 1440.0 980.0)"/></g><g fill="#F4F0E6"><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(-75.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(-45.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(-15.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(15.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(45.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(75.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(105.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(135.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(165.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(195.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(225.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="876.0" rx="24.0" ry="62.0" transform="rotate(255.00 1440.0 980.0)"/></g><g fill="#E27A62"><ellipse cx="1440.0" cy="914.0" rx="19.0" ry="44.0" transform="rotate(-90.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="914.0" rx="19.0" ry="44.0" transform="rotate(-54.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="914.0" rx="19.0" ry="44.0" transform="rotate(-18.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="914.0" rx="19.0" ry="44.0" transform="rotate(18.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="914.0" rx="19.0" ry="44.0" transform="rotate(54.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="914.0" rx="19.0" ry="44.0" transform="rotate(90.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="914.0" rx="19.0" ry="44.0" transform="rotate(126.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="914.0" rx="19.0" ry="44.0" transform="rotate(162.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="914.0" rx="19.0" ry="44.0" transform="rotate(198.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="914.0" rx="19.0" ry="44.0" transform="rotate(234.00 1440.0 980.0)"/></g><g fill="#F4F0E6"><ellipse cx="1440.0" cy="944.0" rx="14.0" ry="28.0" transform="rotate(-67.50 1440.0 980.0)"/><ellipse cx="1440.0" cy="944.0" rx="14.0" ry="28.0" transform="rotate(-22.50 1440.0 980.0)"/><ellipse cx="1440.0" cy="944.0" rx="14.0" ry="28.0" transform="rotate(22.50 1440.0 980.0)"/><ellipse cx="1440.0" cy="944.0" rx="14.0" ry="28.0" transform="rotate(67.50 1440.0 980.0)"/><ellipse cx="1440.0" cy="944.0" rx="14.0" ry="28.0" transform="rotate(112.50 1440.0 980.0)"/><ellipse cx="1440.0" cy="944.0" rx="14.0" ry="28.0" transform="rotate(157.50 1440.0 980.0)"/><ellipse cx="1440.0" cy="944.0" rx="14.0" ry="28.0" transform="rotate(202.50 1440.0 980.0)"/><ellipse cx="1440.0" cy="944.0" rx="14.0" ry="28.0" transform="rotate(247.50 1440.0 980.0)"/></g><circle cx="1440.0" cy="980.0" r="21.0" fill="#E27A62"/><g fill="#E27A62"><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(-90.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(-64.29 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(-38.57 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(-12.86 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(12.86 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(38.57 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(64.29 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(90.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(115.71 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(141.43 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(167.14 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(192.86 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(218.57 1230.0 210.0)"/><ellipse cx="1230.0" cy="141.9" rx="13.8" ry="36.8" transform="rotate(244.29 1230.0 210.0)"/></g><g fill="#F4F0E6"><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(-75.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(-45.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(-15.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(15.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(45.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(75.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(105.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(135.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(165.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(195.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(225.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="162.2" rx="11.0" ry="28.5" transform="rotate(255.00 1230.0 210.0)"/></g><g fill="#E27A62"><ellipse cx="1230.0" cy="179.6" rx="8.7" ry="20.2" transform="rotate(-90.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="179.6" rx="8.7" ry="20.2" transform="rotate(-54.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="179.6" rx="8.7" ry="20.2" transform="rotate(-18.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="179.6" rx="8.7" ry="20.2" transform="rotate(18.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="179.6" rx="8.7" ry="20.2" transform="rotate(54.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="179.6" rx="8.7" ry="20.2" transform="rotate(90.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="179.6" rx="8.7" ry="20.2" transform="rotate(126.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="179.6" rx="8.7" ry="20.2" transform="rotate(162.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="179.6" rx="8.7" ry="20.2" transform="rotate(198.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="179.6" rx="8.7" ry="20.2" transform="rotate(234.00 1230.0 210.0)"/></g><g fill="#F4F0E6"><ellipse cx="1230.0" cy="193.4" rx="6.4" ry="12.9" transform="rotate(-67.50 1230.0 210.0)"/><ellipse cx="1230.0" cy="193.4" rx="6.4" ry="12.9" transform="rotate(-22.50 1230.0 210.0)"/><ellipse cx="1230.0" cy="193.4" rx="6.4" ry="12.9" transform="rotate(22.50 1230.0 210.0)"/><ellipse cx="1230.0" cy="193.4" rx="6.4" ry="12.9" transform="rotate(67.50 1230.0 210.0)"/><ellipse cx="1230.0" cy="193.4" rx="6.4" ry="12.9" transform="rotate(112.50 1230.0 210.0)"/><ellipse cx="1230.0" cy="193.4" rx="6.4" ry="12.9" transform="rotate(157.50 1230.0 210.0)"/><ellipse cx="1230.0" cy="193.4" rx="6.4" ry="12.9" transform="rotate(202.50 1230.0 210.0)"/><ellipse cx="1230.0" cy="193.4" rx="6.4" ry="12.9" transform="rotate(247.50 1230.0 210.0)"/></g><circle cx="1230.0" cy="210.0" r="9.7" fill="#E27A62"/><text class="vt fr" x="770" y="512" text-anchor="middle">L&#8217;INVITATION SUIVRA</text><text class="vt en" x="770" y="512" text-anchor="middle">THE INVITATION WILL FOLLOW</text><text class="vs fr" x="770" y="578" text-anchor="middle">CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN, MAIS CONSERVEZ-LA.</text><text class="vs en" x="770" y="578" text-anchor="middle">KEEP THIS CARD. IT SERVES NO PURPOSE, BUT KEEP IT.</text></svg></div>
+        <div class="actions">
+          <button class="btn" type="button" data-png="dahliav">Télécharger</button>
+          <button class="btn ghost" type="button" data-svg="dahliav">Imprimeur</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Palette &bull; Terre cuite</p>
+    <div class="two-up">
+      <div>
+        <p class="side-tag">Recto</p>
+        <div class="stage"><svg id="terre" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, palette Terre cuite, A6 paysage"><style>
+    #terre text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    #terre .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; fill: #8E3B2E; }
+    #terre .nm    { font-weight: 700; letter-spacing: 11px; fill: #2A211C; }
+    #terre .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; fill: #C15A3C; }
+    #terre .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; fill: #8E3B2E; }
+    #terre .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; fill: #2A211C; }
+    #terre .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; fill: #8E3B2E; }
+    #terre .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .58; fill: #2A211C; }
+
+    #terre[data-l="fr"] .en, #terre[data-l="en"] .fr { display: none; }
+    #terre[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    #terre[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    #terre[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#F3EEE7"/><g fill="#C15A3C"><ellipse cx="1462.0" cy="358.0" rx="72.0" ry="204.0" transform="rotate(-90.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="358.0" rx="72.0" ry="204.0" transform="rotate(-45.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="358.0" rx="72.0" ry="204.0" transform="rotate(0.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="358.0" rx="72.0" ry="204.0" transform="rotate(45.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="358.0" rx="72.0" ry="204.0" transform="rotate(90.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="358.0" rx="72.0" ry="204.0" transform="rotate(135.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="358.0" rx="72.0" ry="204.0" transform="rotate(180.00 1462.0 556.0)"/><ellipse cx="1462.0" cy="358.0" rx="72.0" ry="204.0" transform="rotate(225.00 1462.0 556.0)"/></g><circle cx="1462.0" cy="556.0" r="96.0" fill="#D98E86"/><text class="prod fr" x="140" y="268" text-anchor="start">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="140" y="268" text-anchor="start">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="430">ARNAUD</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="540"><tspan fill="#C15A3C">&amp; </tspan>EMILY</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="430">CHAPS</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="540"><tspan fill="#C15A3C">&amp; </tspan>EMY</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="430">ELMTREE</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="540"><tspan fill="#C15A3C">&amp; </tspan>LACHAP</text><text class="title fr" x="140" y="632" text-anchor="start">CELUI O&#217; ILS SE MARIENT</text><text class="title en" x="140" y="632" text-anchor="start">THE ONE WITH THE WEDDING</text><line x1="140" y1="700" x2="960" y2="700" stroke="#2A211C" stroke-opacity=".3" stroke-width="1.6"/><text class="soon fr" x="140" y="760" text-anchor="start">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="140" y="760" text-anchor="start">A NEW SERIES &#8226; COMING SOON</text><text class="date fr" x="140" y="842" text-anchor="start">VENDREDI 7 MAI 2027</text><text class="date en" x="140" y="842" text-anchor="start">FRIDAY 7 MAY 2027</text><text class="place fr" x="140" y="894" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="140" y="894" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="fine fr" data-n="formal" x="140" y="962" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="140" y="962" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="140" y="962" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="140" y="962" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="140" y="1000" text-anchor="start">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="140" y="1000" text-anchor="start">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+        <div class="actions">
+          <button class="btn" type="button" data-png="terre">Télécharger</button>
+          <button class="btn ghost" type="button" data-svg="terre">Imprimeur</button>
+        </div>
+      </div>
+      <div>
+        <p class="side-tag">Verso</p>
+        <div class="stage"><svg id="terrev" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Verso de la carte, palette Terre cuite"><style>
+    #terrev text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    #terrev .vt { font-size: 26px; letter-spacing: 9px; font-weight: 500; fill: #F4F0E6; }
+    #terrev .vs { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; fill: #F4F0E6; fill-opacity: .82; }
+    #terrev[data-l="fr"] .en, #terrev[data-l="en"] .fr { display: none; }
+</style><rect width="1540" height="1110" fill="#7E2C21"/><g fill="#F4F0E6"><ellipse cx="120.0" cy="17.8" rx="40.8" ry="115.6" transform="rotate(-90.00 120.0 130.0)"/><ellipse cx="120.0" cy="17.8" rx="40.8" ry="115.6" transform="rotate(-45.00 120.0 130.0)"/><ellipse cx="120.0" cy="17.8" rx="40.8" ry="115.6" transform="rotate(0.00 120.0 130.0)"/><ellipse cx="120.0" cy="17.8" rx="40.8" ry="115.6" transform="rotate(45.00 120.0 130.0)"/><ellipse cx="120.0" cy="17.8" rx="40.8" ry="115.6" transform="rotate(90.00 120.0 130.0)"/><ellipse cx="120.0" cy="17.8" rx="40.8" ry="115.6" transform="rotate(135.00 120.0 130.0)"/><ellipse cx="120.0" cy="17.8" rx="40.8" ry="115.6" transform="rotate(180.00 120.0 130.0)"/><ellipse cx="120.0" cy="17.8" rx="40.8" ry="115.6" transform="rotate(225.00 120.0 130.0)"/></g><circle cx="120.0" cy="130.0" r="54.4" fill="#D98E86"/><g fill="#D98E86"><ellipse cx="1440.0" cy="848.0" rx="48.0" ry="136.0" transform="rotate(-90.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="848.0" rx="48.0" ry="136.0" transform="rotate(-45.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="848.0" rx="48.0" ry="136.0" transform="rotate(0.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="848.0" rx="48.0" ry="136.0" transform="rotate(45.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="848.0" rx="48.0" ry="136.0" transform="rotate(90.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="848.0" rx="48.0" ry="136.0" transform="rotate(135.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="848.0" rx="48.0" ry="136.0" transform="rotate(180.00 1440.0 980.0)"/><ellipse cx="1440.0" cy="848.0" rx="48.0" ry="136.0" transform="rotate(225.00 1440.0 980.0)"/></g><circle cx="1440.0" cy="980.0" r="64.0" fill="#F4F0E6"/><g fill="#D98E86"><ellipse cx="1230.0" cy="149.3" rx="22.1" ry="62.6" transform="rotate(-90.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="149.3" rx="22.1" ry="62.6" transform="rotate(-45.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="149.3" rx="22.1" ry="62.6" transform="rotate(0.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="149.3" rx="22.1" ry="62.6" transform="rotate(45.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="149.3" rx="22.1" ry="62.6" transform="rotate(90.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="149.3" rx="22.1" ry="62.6" transform="rotate(135.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="149.3" rx="22.1" ry="62.6" transform="rotate(180.00 1230.0 210.0)"/><ellipse cx="1230.0" cy="149.3" rx="22.1" ry="62.6" transform="rotate(225.00 1230.0 210.0)"/></g><circle cx="1230.0" cy="210.0" r="29.4" fill="#F4F0E6"/><text class="vt fr" x="770" y="512" text-anchor="middle">L&#8217;INVITATION SUIVRA</text><text class="vt en" x="770" y="512" text-anchor="middle">THE INVITATION WILL FOLLOW</text><text class="vs fr" x="770" y="578" text-anchor="middle">CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN, MAIS CONSERVEZ-LA.</text><text class="vs en" x="770" y="578" text-anchor="middle">KEEP THIS CARD. IT SERVES NO PURPOSE, BUT KEEP IT.</text></svg></div>
+        <div class="actions">
+          <button class="btn" type="button" data-png="terrev">Télécharger</button>
+          <button class="btn ghost" type="button" data-svg="terrev">Imprimeur</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Palette &bull; Cobalt et rose</p>
+    <div class="two-up">
+      <div>
+        <p class="side-tag">Recto</p>
+        <div class="stage"><svg id="cobalt" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, palette Cobalt et rose, A6 paysage"><style>
+    #cobalt text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    #cobalt .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; fill: #23499B; }
+    #cobalt .nm    { font-weight: 700; letter-spacing: 11px; fill: #1B2140; }
+    #cobalt .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; fill: #23499B; }
+    #cobalt .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; fill: #23499B; }
+    #cobalt .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; fill: #1B2140; }
+    #cobalt .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; fill: #23499B; }
+    #cobalt .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .58; fill: #1B2140; }
+
+    #cobalt[data-l="fr"] .en, #cobalt[data-l="en"] .fr { display: none; }
+    #cobalt[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    #cobalt[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    #cobalt[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#F2F0EA"/><path d="M 1462.0 334.0 Q 1646.8 172.2 1635.6 417.6 Q 1877.3 461.2 1678.4 605.4 Q 1795.1 821.6 1558.3 756.0 Q 1462.0 982.0 1365.7 756.0 Q 1128.9 821.6 1245.6 605.4 Q 1046.7 461.2 1288.4 417.6 Q 1277.2 172.2 1462.0 334.0 Z" fill="#23499B"/><circle cx="1462.0" cy="556.0" r="90.0" fill="#F0B54A"/><text class="prod fr" x="140" y="268" text-anchor="start">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="140" y="268" text-anchor="start">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="430">ARNAUD</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="540"><tspan fill="#E9808F">&amp; </tspan>EMILY</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="430">CHAPS</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="540"><tspan fill="#E9808F">&amp; </tspan>EMY</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="430">ELMTREE</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="540"><tspan fill="#E9808F">&amp; </tspan>LACHAP</text><text class="title fr" x="140" y="632" text-anchor="start">CELUI O&#217; ILS SE MARIENT</text><text class="title en" x="140" y="632" text-anchor="start">THE ONE WITH THE WEDDING</text><line x1="140" y1="700" x2="960" y2="700" stroke="#1B2140" stroke-opacity=".3" stroke-width="1.6"/><text class="soon fr" x="140" y="760" text-anchor="start">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="140" y="760" text-anchor="start">A NEW SERIES &#8226; COMING SOON</text><text class="date fr" x="140" y="842" text-anchor="start">VENDREDI 7 MAI 2027</text><text class="date en" x="140" y="842" text-anchor="start">FRIDAY 7 MAY 2027</text><text class="place fr" x="140" y="894" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="140" y="894" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="fine fr" data-n="formal" x="140" y="962" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="140" y="962" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="140" y="962" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="140" y="962" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="140" y="1000" text-anchor="start">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="140" y="1000" text-anchor="start">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+        <div class="actions">
+          <button class="btn" type="button" data-png="cobalt">Télécharger</button>
+          <button class="btn ghost" type="button" data-svg="cobalt">Imprimeur</button>
+        </div>
+      </div>
+      <div>
+        <p class="side-tag">Verso</p>
+        <div class="stage"><svg id="cobaltv" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Verso de la carte, palette Cobalt et rose"><style>
+    #cobaltv text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    #cobaltv .vt { font-size: 26px; letter-spacing: 9px; font-weight: 500; fill: #F4F0E6; }
+    #cobaltv .vs { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; fill: #F4F0E6; fill-opacity: .82; }
+    #cobaltv[data-l="fr"] .en, #cobaltv[data-l="en"] .fr { display: none; }
+</style><rect width="1540" height="1110" fill="#1B3878"/><path d="M 120.0 4.2 Q 224.7 -87.5 218.4 51.6 Q 355.3 76.3 242.6 158.0 Q 308.7 280.5 174.6 243.3 Q 120.0 371.4 65.4 243.3 Q -68.7 280.5 -2.6 158.0 Q -115.3 76.3 21.6 51.6 Q 15.3 -87.5 120.0 4.2 Z" fill="#F4F0E6"/><circle cx="120.0" cy="130.0" r="51.0" fill="#F0B54A"/><path d="M 1440.0 832.0 Q 1563.2 724.1 1555.7 887.7 Q 1716.9 916.8 1584.3 1012.9 Q 1662.0 1157.1 1504.2 1113.3 Q 1440.0 1264.0 1375.8 1113.3 Q 1218.0 1157.1 1295.7 1012.9 Q 1163.1 916.8 1324.3 887.7 Q 1316.8 724.1 1440.0 832.0 Z" fill="#F0B54A"/><circle cx="1440.0" cy="980.0" r="60.0" fill="#F4F0E6"/><path d="M 1230.0 141.9 Q 1286.7 92.3 1283.2 167.6 Q 1357.4 180.9 1296.4 225.1 Q 1332.1 291.5 1259.5 271.3 Q 1230.0 340.6 1200.5 271.3 Q 1127.9 291.5 1163.6 225.1 Q 1102.6 180.9 1176.8 167.6 Q 1173.3 92.3 1230.0 141.9 Z" fill="#F0B54A"/><circle cx="1230.0" cy="210.0" r="27.6" fill="#F4F0E6"/><text class="vt fr" x="770" y="512" text-anchor="middle">L&#8217;INVITATION SUIVRA</text><text class="vt en" x="770" y="512" text-anchor="middle">THE INVITATION WILL FOLLOW</text><text class="vs fr" x="770" y="578" text-anchor="middle">CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN, MAIS CONSERVEZ-LA.</text><text class="vs en" x="770" y="578" text-anchor="middle">KEEP THIS CARD. IT SERVES NO PURPOSE, BUT KEEP IT.</text></svg></div>
+        <div class="actions">
+          <button class="btn" type="button" data-png="cobaltv">Télécharger</button>
+          <button class="btn ghost" type="button" data-svg="cobaltv">Imprimeur</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Palette &bull; Aubergine et jaune acide</p>
+    <div class="two-up">
+      <div>
+        <p class="side-tag">Recto</p>
+        <div class="stage"><svg id="aubergine" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, palette Aubergine et jaune acide, A6 paysage"><style>
+    #aubergine text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    #aubergine .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; fill: #E4E04A; }
+    #aubergine .nm    { font-weight: 700; letter-spacing: 11px; fill: #F4EFE4; }
+    #aubergine .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; fill: #B98FD1; }
+    #aubergine .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; fill: #E4E04A; }
+    #aubergine .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; fill: #F4EFE4; }
+    #aubergine .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; fill: #E4E04A; }
+    #aubergine .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .58; fill: #F4EFE4; }
+
+    #aubergine[data-l="fr"] .en, #aubergine[data-l="en"] .fr { display: none; }
+    #aubergine[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    #aubergine[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    #aubergine[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#2E1B33"/><circle cx="1462.0" cy="556.0" r="300.0" fill="#B98FD1"/><circle cx="1462.0" cy="556.0" r="216.0" fill="none" stroke="#E4E04A" stroke-width="60.0"/><circle cx="1462.0" cy="556.0" r="102.0" fill="#E4E04A"/><text class="prod fr" x="140" y="268" text-anchor="start">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="140" y="268" text-anchor="start">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="430">ARNAUD</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="540"><tspan fill="#E4E04A">&amp; </tspan>EMILY</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="430">CHAPS</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="540"><tspan fill="#E4E04A">&amp; </tspan>EMY</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="430">ELMTREE</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="540"><tspan fill="#E4E04A">&amp; </tspan>LACHAP</text><text class="title fr" x="140" y="632" text-anchor="start">CELUI O&#217; ILS SE MARIENT</text><text class="title en" x="140" y="632" text-anchor="start">THE ONE WITH THE WEDDING</text><line x1="140" y1="700" x2="960" y2="700" stroke="#F4EFE4" stroke-opacity=".3" stroke-width="1.6"/><text class="soon fr" x="140" y="760" text-anchor="start">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="140" y="760" text-anchor="start">A NEW SERIES &#8226; COMING SOON</text><text class="date fr" x="140" y="842" text-anchor="start">VENDREDI 7 MAI 2027</text><text class="date en" x="140" y="842" text-anchor="start">FRIDAY 7 MAY 2027</text><text class="place fr" x="140" y="894" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="140" y="894" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="fine fr" data-n="formal" x="140" y="962" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="140" y="962" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="140" y="962" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="140" y="962" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="140" y="1000" text-anchor="start">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="140" y="1000" text-anchor="start">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+        <div class="actions">
+          <button class="btn" type="button" data-png="aubergine">Télécharger</button>
+          <button class="btn ghost" type="button" data-svg="aubergine">Imprimeur</button>
+        </div>
+      </div>
+      <div>
+        <p class="side-tag">Verso</p>
+        <div class="stage"><svg id="auberginev" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Verso de la carte, palette Aubergine et jaune acide"><style>
+    #auberginev text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    #auberginev .vt { font-size: 26px; letter-spacing: 9px; font-weight: 500; fill: #F4F0E6; }
+    #auberginev .vs { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; fill: #F4F0E6; fill-opacity: .82; }
+    #auberginev[data-l="fr"] .en, #auberginev[data-l="en"] .fr { display: none; }
+</style><rect width="1540" height="1110" fill="#2A1730"/><circle cx="120.0" cy="130.0" r="170.0" fill="#F4F0E6"/><circle cx="120.0" cy="130.0" r="122.4" fill="none" stroke="#E4E04A" stroke-width="34.0"/><circle cx="120.0" cy="130.0" r="57.8" fill="#E4E04A"/><circle cx="1440.0" cy="980.0" r="200.0" fill="#E4E04A"/><circle cx="1440.0" cy="980.0" r="144.0" fill="none" stroke="#F4F0E6" stroke-width="40.0"/><circle cx="1440.0" cy="980.0" r="68.0" fill="#F4F0E6"/><circle cx="1230.0" cy="210.0" r="92.0" fill="#E4E04A"/><circle cx="1230.0" cy="210.0" r="66.2" fill="none" stroke="#F4F0E6" stroke-width="18.4"/><circle cx="1230.0" cy="210.0" r="31.3" fill="#F4F0E6"/><text class="vt fr" x="770" y="512" text-anchor="middle">L&#8217;INVITATION SUIVRA</text><text class="vt en" x="770" y="512" text-anchor="middle">THE INVITATION WILL FOLLOW</text><text class="vs fr" x="770" y="578" text-anchor="middle">CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN, MAIS CONSERVEZ-LA.</text><text class="vs en" x="770" y="578" text-anchor="middle">KEEP THIS CARD. IT SERVES NO PURPOSE, BUT KEEP IT.</text></svg></div>
+        <div class="actions">
+          <button class="btn" type="button" data-png="auberginev">Télécharger</button>
+          <button class="btn ghost" type="button" data-svg="auberginev">Imprimeur</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Palette &bull; Ciel et orange</p>
+    <div class="two-up">
+      <div>
+        <p class="side-tag">Recto</p>
+        <div class="stage"><svg id="ciel" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date, palette Ciel et orange, A6 paysage"><style>
+    #ciel text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    #ciel .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; fill: #96380F; }
+    #ciel .nm    { font-weight: 700; letter-spacing: 11px; fill: #16242C; }
+    #ciel .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; fill: #B0481A; }
+    #ciel .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; fill: #96380F; }
+    #ciel .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; fill: #16242C; }
+    #ciel .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; fill: #96380F; }
+    #ciel .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .58; fill: #16242C; }
+
+    #ciel[data-l="fr"] .en, #ciel[data-l="en"] .fr { display: none; }
+    #ciel[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    #ciel[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    #ciel[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#CDE4EF"/><path d="M 1548.0 1140.0 C 1616.0 780.0 1372.0 430.0 1436.0 96.0" fill="none" stroke="#2E5A34" stroke-width="11.2" stroke-linecap="round"/><g fill="#3E7145"><ellipse cx="1629.7" cy="1028.5" rx="86.5" ry="36.3" transform="rotate(-32.78 1629.7 1028.5)"/><ellipse cx="1479.3" cy="902.2" rx="96.6" ry="40.6" transform="rotate(-145.24 1479.3 902.2)"/><ellipse cx="1616.4" cy="763.0" rx="104.8" ry="44.0" transform="rotate(-47.32 1616.4 763.0)"/><ellipse cx="1422.2" cy="677.2" rx="110.1" ry="46.3" transform="rotate(-154.99 1422.2 677.2)"/><ellipse cx="1562.0" cy="519.6" rx="112.0" ry="47.0" transform="rotate(-52.33 1562.0 519.6)"/><ellipse cx="1364.8" cy="447.8" rx="110.1" ry="46.3" transform="rotate(-155.34 1364.8 447.8)"/><ellipse cx="1511.3" cy="302.4" rx="104.8" ry="44.0" transform="rotate(-47.92 1511.3 302.4)"/><ellipse cx="1347.1" cy="213.5" rx="96.6" ry="40.6" transform="rotate(-145.85 1347.1 213.5)"/><ellipse cx="1500.2" cy="109.1" rx="86.5" ry="36.3" transform="rotate(-33.02 1500.2 109.1)"/><ellipse cx="1452.4" cy="10.2" rx="87.4" ry="34.9" transform="rotate(-79.15 1452.4 10.2)"/></g><text class="prod fr" x="140" y="268" text-anchor="start">COM&#201;DIE ROMANTIQUE &#8226; TOUS PUBLICS</text><text class="prod en" x="140" y="268" text-anchor="start">ROMANTIC COMEDY &#8226; ALL AUDIENCES</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="430">ARNAUD</text><text class="nm" data-n="formal" style="font-size:96px" x="140" y="540"><tspan fill="#B0481A">&amp; </tspan>EMILY</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="430">CHAPS</text><text class="nm" data-n="nick" style="font-size:96px" x="140" y="540"><tspan fill="#B0481A">&amp; </tspan>EMY</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="430">ELMTREE</text><text class="nm" data-n="handle" style="font-size:96px" x="140" y="540"><tspan fill="#B0481A">&amp; </tspan>LACHAP</text><text class="title fr" x="140" y="632" text-anchor="start">CELUI O&#217; ILS SE MARIENT</text><text class="title en" x="140" y="632" text-anchor="start">THE ONE WITH THE WEDDING</text><line x1="140" y1="700" x2="960" y2="700" stroke="#16242C" stroke-opacity=".3" stroke-width="1.6"/><text class="soon fr" x="140" y="760" text-anchor="start">UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT</text><text class="soon en" x="140" y="760" text-anchor="start">A NEW SERIES &#8226; COMING SOON</text><text class="date fr" x="140" y="842" text-anchor="start">VENDREDI 7 MAI 2027</text><text class="date en" x="140" y="842" text-anchor="start">FRIDAY 7 MAY 2027</text><text class="place fr" x="140" y="894" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="place en" x="140" y="894" text-anchor="start">CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE</text><text class="fine fr" data-n="formal" x="140" y="962" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE</text><text class="fine en" data-n="formal" x="140" y="962" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE</text><text class="fine fr" data-n="nick handle" x="140" y="962" text-anchor="start">AVEC ANNABEL ET ELLIOT &#8226; CASTING R&#201;UNI PAR ICONOSQUARE &#8226; CERTAINS NOMS ONT &#201;T&#201; CHANG&#201;S</text><text class="fine en" data-n="nick handle" x="140" y="962" text-anchor="start">WITH ANNABEL AND ELLIOT &#8226; CASTING BY ICONOSQUARE &#8226; SOME NAMES HAVE BEEN CHANGED</text><text class="fine fr" x="140" y="1000" text-anchor="start">D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text><text class="fine en" x="140" y="1000" text-anchor="start">BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text></svg></div>
+        <div class="actions">
+          <button class="btn" type="button" data-png="ciel">Télécharger</button>
+          <button class="btn ghost" type="button" data-svg="ciel">Imprimeur</button>
+        </div>
+      </div>
+      <div>
+        <p class="side-tag">Verso</p>
+        <div class="stage"><svg id="cielv" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Verso de la carte, palette Ciel et orange"><style>
+    #cielv text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    #cielv .vt { font-size: 26px; letter-spacing: 9px; font-weight: 500; fill: #F4F0E6; }
+    #cielv .vs { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; fill: #F4F0E6; fill-opacity: .82; }
+    #cielv[data-l="fr"] .en, #cielv[data-l="en"] .fr { display: none; }
+</style><rect width="1540" height="1110" fill="#24512C"/><path d="M -40.0 1160.0 C 140.0 820.0 -90.0 430.0 90.0 70.0" fill="none" stroke="#2E5A34" stroke-width="10.4" stroke-linecap="round"/><g fill="#F4F0E6"><ellipse cx="65.0" cy="1075.0" rx="80.3" ry="33.7" transform="rotate(-16.85 65.0 1075.0)"/><ellipse cx="-39.4" cy="915.7" rx="89.7" ry="37.7" transform="rotate(-131.72 -39.4 915.7)"/><ellipse cx="111.8" cy="807.6" rx="97.3" ry="40.9" transform="rotate(-35.67 111.8 807.6)"/><ellipse cx="-51.0" cy="684.5" rx="102.3" ry="43.0" transform="rotate(-144.35 -51.0 684.5)"/><ellipse cx="102.5" cy="553.1" rx="104.0" ry="43.7" transform="rotate(-41.87 102.5 553.1)"/><ellipse cx="-65.2" cy="440.5" rx="102.3" ry="43.0" transform="rotate(-144.33 -65.2 440.5)"/><ellipse cx="96.2" cy="320.9" rx="97.3" ry="40.9" transform="rotate(-35.73 96.2 320.9)"/><ellipse cx="-30.4" cy="189.2" rx="89.7" ry="37.7" transform="rotate(-132.09 -30.4 189.2)"/><ellipse cx="138.3" cy="110.6" rx="80.3" ry="33.7" transform="rotate(-17.79 138.3 110.6)"/><ellipse cx="126.3" cy="-2.6" rx="81.1" ry="32.4" transform="rotate(-63.43 126.3 -2.6)"/></g><path d="M 1600.0 -40.0 C 1420.0 300.0 1650.0 700.0 1470.0 1040.0" fill="none" stroke="#F4F0E6" stroke-width="9.2" stroke-linecap="round"/><g fill="#2E5A34"><ellipse cx="1503.9" cy="42.5" rx="71.1" ry="29.8" transform="rotate(163.09 1503.9 42.5)"/><ellipse cx="1592.6" cy="197.2" rx="79.4" ry="33.3" transform="rotate(48.21 1592.6 197.2)"/><ellipse cx="1457.3" cy="307.3" rx="86.1" ry="36.2" transform="rotate(144.31 1457.3 307.3)"/><ellipse cx="1601.4" cy="430.8" rx="90.5" ry="38.0" transform="rotate(35.66 1601.4 430.8)"/><ellipse cx="1466.5" cy="561.4" rx="92.0" ry="38.6" transform="rotate(138.13 1466.5 561.4)"/><ellipse cx="1615.7" cy="674.7" rx="90.5" ry="38.0" transform="rotate(35.66 1615.7 674.7)"/><ellipse cx="1472.8" cy="793.1" rx="86.1" ry="36.2" transform="rotate(144.31 1472.8 793.1)"/><ellipse cx="1583.2" cy="921.2" rx="79.4" ry="33.3" transform="rotate(48.21 1583.2 921.2)"/><ellipse cx="1430.2" cy="998.8" rx="71.1" ry="29.8" transform="rotate(163.09 1430.2 998.8)"/><ellipse cx="1436.4" cy="1103.4" rx="71.8" ry="28.7" transform="rotate(117.90 1436.4 1103.4)"/></g><text class="vt fr" x="770" y="512" text-anchor="middle">L&#8217;INVITATION SUIVRA</text><text class="vt en" x="770" y="512" text-anchor="middle">THE INVITATION WILL FOLLOW</text><text class="vs fr" x="770" y="578" text-anchor="middle">CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN, MAIS CONSERVEZ-LA.</text><text class="vs en" x="770" y="578" text-anchor="middle">KEEP THIS CARD. IT SERVES NO PURPOSE, BUT KEEP IT.</text></svg></div>
+        <div class="actions">
+          <button class="btn" type="button" data-png="cielv">Télécharger</button>
+          <button class="btn ghost" type="button" data-svg="cielv">Imprimeur</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var cards = document.querySelectorAll('.card');
+  var toastEl = document.getElementById('toast');
+  var timer = null;
+  var LANGS = ['fr', 'en'];
+  var W = 1540, H = 1110;
+  var MM_W = '154.0mm', MM_H = '111.0mm';
+  var DPI_SCALE = 300 / 254.0 * 1.0;   /* 1 unit = 0.1 mm, so 300 dpi = 1.1811 px per unit */
+  var GROUNDS = { sobre: '#F4F0E6', equi: '#F4F0E6', satu: '#14524E',
+                  fleur: '#F4F0E6', grosdate: '#F4F0E6', horizon: '#F4F0E6', typo: '#F4F0E6',
+                  verso: '#14524E', dahlia: '#F5F0E8', dahliav: '#7A1F38', terre: '#F3EEE7', terrev: '#7E2C21', cobalt: '#F2F0EA', cobaltv: '#1B3878', aubergine: '#2E1B33', auberginev: '#2A1730', ciel: '#CDE4EF', cielv: '#24512C' };
+
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('on');
+    clearTimeout(timer);
+    timer = setTimeout(function () { toastEl.classList.remove('on'); }, 2800);
+  }
+
+  document.querySelectorAll('[data-set]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      cards.forEach(function (c) { c.setAttribute('data-' + b.dataset.set, b.dataset.val); });
+      document.querySelectorAll('[data-set="' + b.dataset.set + '"]').forEach(function (o) {
+        o.setAttribute('aria-pressed', String(o === b));
+      });
+    });
+  });
+
+  function stem(card, lang) {
+    return 'save-the-date-A6-' + card.id + '-' + card.getAttribute('data-n') + '-' + lang;
+  }
+
+  /* the print file carries no guides and real millimetre dimensions */
+  function serialiseAs(card, lang) {
+    var clone = card.cloneNode(true);
+    /* the id stays: the per-card CSS is scoped by it */
+    clone.removeAttribute('class');
+    clone.setAttribute('data-l', lang);
+    clone.setAttribute('width', MM_W);
+    clone.setAttribute('height', MM_H);
+    var guide = clone.querySelector('.guide');
+    if (guide) { guide.parentNode.removeChild(guide); }
+    return '<?xml version="1.0" encoding="UTF-8"?>' + new XMLSerializer().serializeToString(clone);
+  }
+
+  function toPng(svgString, ground) {
+    return new Promise(function (resolve) {
+      var img = new Image();
+      img.onload = function () {
+        try {
+          var canvas = document.createElement('canvas');
+          canvas.width = Math.round(W * DPI_SCALE);
+          canvas.height = Math.round(H * DPI_SCALE);
+          var ctx = canvas.getContext('2d');
+          ctx.fillStyle = ground;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          canvas.toBlob(function (blob) { resolve(blob || null); }, 'image/png');
+        } catch (e) { resolve(null); }
+      };
+      img.onerror = function () { resolve(null); };
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
+    });
+  }
+
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+  /* outside claude.ai there is no download capability, but no sandbox either:
+     a plain anchor works, so a self-hosted copy of this page stays fully usable */
+  function anchorSave(filename, data) {
+    try {
+      var blob = (data instanceof Blob) ? data : new Blob([data], { type: 'image/svg+xml;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  async function offer(filename, data, retried) {
+    var downloads = null;
+    try { downloads = await claude.use('downloads'); } catch (e) {}
+    if (!downloads) { return anchorSave(filename, data) ? 'saved' : 'unavailable'; }
+    try {
+      await downloads.save({ filename: filename, data: data });
+      return 'saved';
+    } catch (err) {
+      var code = err && err.code;
+      if (code === 'declined') { return 'declined'; }
+      if (code === 'extension_not_enabled' || code === 'rejected_extension') { return 'blocked'; }
+      if (code === 'rate_limited' && !retried) { await wait(1400); return offer(filename, data, true); }
+      return 'error';
+    }
+  }
+
+  async function handOver(card, kind) {
+    var svg = null, saved = 0, note = '';
+
+    for (var i = 0; i < LANGS.length; i++) {
+      var lang = LANGS[i];
+      svg = serialiseAs(card, lang);
+      var name = stem(card, lang);
+      var res = 'blocked';
+
+      /* try the asked-for format, then the other one. A blocked vector falls
+         back to PNG and says so: never a silent downgrade */
+      var order = (kind === 'png') ? ['png', 'svg'] : ['svg', 'png'];
+
+      for (var k = 0; k < order.length && res === 'blocked'; k++) {
+        var fmt = order[k];
+        if (fmt === 'png') {
+          var blob = await toPng(svg, GROUNDS[card.id]);
+          if (!blob) { continue; }
+          res = await offer(name + '.png', blob, false);
+          if (res === 'saved' && kind === 'svg') { note = 'PNG 300 dpi : le SVG est bloqu\u00e9 par le navigateur'; }
+        } else if (fmt === 'svg') {
+          res = await offer(name + '.svg', svg, false);
+          if (res === 'saved' && kind === 'png') { note = 'SVG : le PNG n\u2019a pas pu \u00eatre produit'; }
+        }
+      }
+
+      if (res === 'unavailable') { toast('T\u00e9l\u00e9chargement bloqu\u00e9 par le navigateur'); return; }
+      if (res === 'declined') { break; }
+      if (res === 'saved') { saved += 1; }
+      else { toast('Aucun format accept\u00e9 par le navigateur, utilisez Imprimer'); return; }
+      if (i === 0) { await wait(600); }
+    }
+
+    if (saved === 2) { toast(note || 'Les deux langues sont enregistr\u00e9es'); }
+    else if (saved === 1) { toast('Une seule des deux a \u00e9t\u00e9 enregistr\u00e9e'); }
+  }
+
+  document.querySelectorAll('[data-png]').forEach(function (b) {
+    b.addEventListener('click', function () { handOver(document.getElementById(b.dataset.png), 'png'); });
+  });
+  document.querySelectorAll('[data-svg]').forEach(function (b) {
+    b.addEventListener('click', function () { handOver(document.getElementById(b.dataset.svg), 'svg'); });
+  });
+})();
+</script>
