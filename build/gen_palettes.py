@@ -292,7 +292,7 @@ def build(p):
         out.append('<text class="nm" data-n="%s" style="font-size:96px" x="%d" y="430">%s</text>' % (key, X, first))
         out.append('<text class="nm" data-n="%s" style="font-size:96px" x="%d" y="540">'
                    '<tspan fill="%s">&amp; </tspan>%s</text>' % (key, X, p['amp'], second))
-    out.append(T(X, 632, 'title', 'CELUI O&#217; ILS SE MARIENT', 'THE ONE WITH THE WEDDING'))
+    out.append(T(X, 632, 'title', 'CEUX QUI SE MARIENT', 'THE ONE WITH THE WEDDING'))
     out.append('<line x1="%d" y1="700" x2="960" y2="700" stroke="%s" stroke-opacity=".3" stroke-width="1.6"/>' % (X, p['ink']))
     out.append(T(X, 760, 'soon', 'UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT', 'A NEW SERIES &#8226; COMING SOON'))
     out.append(T(X, 842, 'date', 'VENDREDI 7 MAI 2027', 'FRIDAY 7 MAY 2027'))
@@ -338,8 +338,8 @@ def build_verso(p):
     out.append('<text class="vt fr" x="%d" y="496" text-anchor="middle">L&#8217;INVITATION SUIVRA</text>' % (W / 2))
     out.append('<text class="vt en" x="%d" y="496" text-anchor="middle">THE INVITATION WILL FOLLOW</text>' % (W / 2))
     out.append('<text class="vs fr" x="%d" y="562" text-anchor="middle">CONSERVEZ CETTE CARTE JUSQU&#8217;&#192; LA FIN DE LA S&#201;ANCE.</text>' % (W / 2))
-    out.append('<text class="vs en" x="%d" y="562" text-anchor="middle">KEEP THIS CARD UNTIL THE END OF THE SCREENING.</text>' % (W / 2))
-    out.append('<text class="vs fr" x="%d" y="602" text-anchor="middle">AUCUN DUPLICATA NE SERA &#201;MIS.</text>' % (W / 2))
+    out.append('<text class="vs en" x="%d" y="562" text-anchor="middle">RETAIN THIS CARD UNTIL THE END OF THE SCREENING.</text>' % (W / 2))
+    out.append('<text class="vs fr" x="%d" y="602" text-anchor="middle">AUCUN DUPLICATA NE SERA D&#201;LIVR&#201;.</text>' % (W / 2))
     out.append('<text class="vs en" x="%d" y="602" text-anchor="middle">NO DUPLICATE WILL BE ISSUED.</text>' % (W / 2))
     return ('<svg id="%sv" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" '
             'data-l="fr" data-n="formal" role="img" aria-label="Verso de la carte, palette %s">'
