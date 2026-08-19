@@ -97,6 +97,50 @@ def dahlia(cx, cy, r, petal_fill, core_fill):
     out.append('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="%s"/>' % (cx, cy, r * 0.105, petal_fill))
     return ''.join(out)
 
+
+def pivoine(cx, cy, r, petal_fill, core_fill):
+    """dense rounded petals in overlapping rings and no visible centre:
+    a peony is a pompom, not a star"""
+    rings = [
+        (11, 0.70, 0.30, 0.24, petal_fill),
+        (9,  0.50, 0.26, 0.21, core_fill),
+        (7,  0.33, 0.22, 0.18, petal_fill),
+        (5,  0.17, 0.18, 0.15, core_fill),
+    ]
+    out = []
+    for idx, (n, ring, rx, ry, fill) in enumerate(rings):
+        out.append('<g fill="%s">' % fill)
+        offset = (180.0 / n) if idx % 2 else 0.0
+        for i in range(n):
+            a = -90 + offset + i * (360.0 / n)
+            out.append('<ellipse cx="%.1f" cy="%.1f" rx="%.1f" ry="%.1f" transform="rotate(%.2f %.1f %.1f)"/>'
+                       % (cx, cy - r * ring, r * rx, r * ry, a, cx, cy))
+        out.append('</g>')
+    out.append('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="%s"/>' % (cx, cy, r * 0.12, petal_fill))
+    return ''.join(out)
+
+def _forget_me_not(cx, cy, size, petal_fill, core_fill):
+    out = ['<g fill="%s">' % petal_fill]
+    for i in range(5):
+        a = math.radians(-90 + i * 72)
+        out.append('<circle cx="%.1f" cy="%.1f" r="%.1f"/>'
+                   % (cx + size * 0.60 * math.cos(a), cy + size * 0.60 * math.sin(a), size * 0.44))
+    out.append('</g><circle cx="%.1f" cy="%.1f" r="%.1f" fill="%s"/>' % (cx, cy, size * 0.30, core_fill))
+    return ''.join(out)
+
+def myosotis(cx, cy, r, petal_fill, core_fill):
+    """a forget-me-not is never alone: a cluster of small five-petal flowers,
+    which gives a scattered texture instead of one big bloom"""
+    spots = [(0.0, 0.0, 0.30)]
+    for i in range(5):
+        a = math.radians(-90 + i * 72 + 18)
+        spots.append((0.56 * math.cos(a), 0.56 * math.sin(a), 0.25))
+    for i in range(4):
+        a = math.radians(-90 + i * 90 + 45)
+        spots.append((0.98 * math.cos(a), 0.98 * math.sin(a), 0.19))
+    return ''.join(_forget_me_not(cx + dx * r, cy + dy * r, sz * r, petal_fill, core_fill)
+                   for dx, dy, sz in spots)
+
 def sprig(p0, p1, p2, p3, leaf_len, leaf_fill, stem_fill, leaves=9, t0=0.06, t1=0.94, splay=52):
     """a stem plus leaves anchored ON the stem: each leaf sits at a point of the
     curve and is rotated relative to the tangent there, so nothing floats"""
@@ -135,7 +179,15 @@ PALETTES = [
     dict(key='dahlia', name='Dahlia framboise',
          why="Une vraie fleur de mariage, et une g\u00e9om\u00e9trie qui se dessine bien \u00e0 plat : quatre couronnes de p\u00e9tales pointus qui se r\u00e9duisent vers le centre, chaque couronne d\u00e9cal\u00e9e par rapport \u00e0 la pr\u00e9c\u00e9dente. C'est ce feuillet\u00e9 qui la distingue d'une marguerite. Framboise et corail, sur cr\u00e8me.",
          ground='#F5F0E8', ink='#2B2226', label='#8A2C46', title='#B33A5B', amp='#E27A62',
-         petal='#B33A5B', core='#E27A62', shape='dahlia', deep='#7A1F38'),    dict(key='terre', name='Terre cuite',
+         petal='#B33A5B', core='#E27A62', shape='dahlia', deep='#7A1F38'),    dict(key='pivoine', name='Pivoine',
+         why="La fleur pr\u00e9f\u00e9r\u00e9e d'Emy. Une pivoine est un pompon : des p\u00e9tales arrondis en couronnes qui se chevauchent, sans c\u0153ur visible. C'est la plus g\u00e9n\u00e9reuse des fleurs propos\u00e9es, et la seule qui remplit vraiment son cercle. Rose ancien et corail sur cr\u00e8me.",
+         ground='#F6F0EA', ink='#2C2126', label='#9C3A52', title='#C75A72', amp='#E39AA5',
+         petal='#C75A72', core='#E39AA5', shape='pivoine', deep='#7A2438'),
+    dict(key='myosotis', name='Myosotis',
+         why="L'autre fleur d'Emy, et celle qui change le plus la carte : un myosotis n'est jamais seul, donc au lieu d'une grande fleur on obtient une gerbe de petites, avec leur \u0153il jaune. La texture est mouchet\u00e9e plut\u00f4t que massive, et le bleu p\u00e2le est la couleur la plus douce des sept.",
+         ground='#F4F3ED', ink='#1F2A33', label='#2C5E86', title='#3D7FA8', amp='#D9A92F',
+         petal='#5C97C4', core='#F0C93F', shape='myosotis', deep='#234C6B'),
+    dict(key='terre', name='Terre cuite',
          why="Une famille chaude et resserrée : terre cuite, rose ancien, brique. C'est la plus douce des quatre et la plus facile à imprimer, les tons chauds ne bougent pas au tirage. Les pétales deviennent pointus, ce qui donne une marguerite plutôt qu'une fleur ronde.",
          ground='#F3EEE7', ink='#2A211C', label='#8E3B2E', title='#C15A3C', amp='#C15A3C',
          petal='#C15A3C', core='#D98E86', shape='pointed', deep='#7E2C21'),
@@ -154,7 +206,7 @@ PALETTES = [
 ]
 
 SHAPES = {'round': daisy_round, 'pointed': daisy_pointed, 'poppy': poppy, 'rings': rings,
-          'sprig': sprig, 'dahlia': dahlia}
+          'sprig': sprig, 'dahlia': dahlia, 'pivoine': pivoine, 'myosotis': myosotis}
 
 def style_for(p):
     """every selector is scoped to this card's id: a <style> inside inline SVG
