@@ -141,6 +141,17 @@ def myosotis(cx, cy, r, petal_fill, core_fill):
     return ''.join(_forget_me_not(cx + dx * r, cy + dy * r, sz * r, petal_fill, core_fill)
                    for dx, dy, sz in spots)
 
+
+def bouquet(cx, cy, r, peony_a, peony_b, blue, yellow):
+    """how a real bouquet is built: one focal flower, small ones filling around it"""
+    out = [pivoine(cx, cy, r * 0.70, peony_a, peony_b)]
+    spots = [(-0.86, 0.42, 0.17), (-0.60, 0.80, 0.13), (0.56, -0.82, 0.15),
+             (0.90, -0.42, 0.12), (0.84, 0.64, 0.16), (0.50, 0.94, 0.12),
+             (-0.32, -0.94, 0.14), (0.04, -1.04, 0.11)]
+    for dx, dy, sz in spots:
+        out.append(_forget_me_not(cx + dx * r, cy + dy * r, sz * r, blue, yellow))
+    return ''.join(out)
+
 def sprig(p0, p1, p2, p3, leaf_len, leaf_fill, stem_fill, leaves=9, t0=0.06, t1=0.94, splay=52):
     """a stem plus leaves anchored ON the stem: each leaf sits at a point of the
     curve and is rotated relative to the tangent there, so nothing floats"""
@@ -176,10 +187,7 @@ def sprig(p0, p1, p2, p3, leaf_len, leaf_fill, stem_fill, leaves=9, t0=0.06, t1=
 # ---------------------------------------------------------------- palettes
 
 PALETTES = [
-    dict(key='dahlia', name='Dahlia framboise',
-         why="Une vraie fleur de mariage, et une g\u00e9om\u00e9trie qui se dessine bien \u00e0 plat : quatre couronnes de p\u00e9tales pointus qui se r\u00e9duisent vers le centre, chaque couronne d\u00e9cal\u00e9e par rapport \u00e0 la pr\u00e9c\u00e9dente. C'est ce feuillet\u00e9 qui la distingue d'une marguerite. Framboise et corail, sur cr\u00e8me.",
-         ground='#F5F0E8', ink='#2B2226', label='#8A2C46', title='#B33A5B', amp='#E27A62',
-         petal='#B33A5B', core='#E27A62', shape='dahlia', deep='#7A1F38'),    dict(key='pivoine', name='Pivoine',
+    dict(key='pivoine', name='Pivoine',
          why="La fleur pr\u00e9f\u00e9r\u00e9e d'Emy. Une pivoine est un pompon : des p\u00e9tales arrondis en couronnes qui se chevauchent, sans c\u0153ur visible. C'est la plus g\u00e9n\u00e9reuse des fleurs propos\u00e9es, et la seule qui remplit vraiment son cercle. Rose ancien et corail sur cr\u00e8me.",
          ground='#F6F0EA', ink='#2C2126', label='#9C3A52', title='#C75A72', amp='#E39AA5',
          petal='#C75A72', core='#E39AA5', shape='pivoine', deep='#7A2438'),
@@ -187,7 +195,15 @@ PALETTES = [
          why="L'autre fleur d'Emy, et celle qui change le plus la carte : un myosotis n'est jamais seul, donc au lieu d'une grande fleur on obtient une gerbe de petites, avec leur \u0153il jaune. La texture est mouchet\u00e9e plut\u00f4t que massive, et le bleu p\u00e2le est la couleur la plus douce des sept.",
          ground='#F4F3ED', ink='#1F2A33', label='#2C5E86', title='#3D7FA8', amp='#D9A92F',
          petal='#5C97C4', core='#F0C93F', shape='myosotis', deep='#234C6B'),
-    dict(key='terre', name='Terre cuite',
+    dict(key='melange', name='Pivoine et myosotis',
+         why="Les deux fleurs d'Emy dans la m\u00eame carte, mont\u00e9es comme un vrai bouquet : une pivoine en fleur principale, des myosotis qui remplissent autour. C'est la seule proposition o\u00f9 le rose et le bleu cohabitent, et l'esperluette passe en bleu au milieu des capitales roses.",
+         ground='#F5F2EC', ink='#262A31', label='#7C3A50', title='#C0687E', amp='#5C97C4',
+         petal='#C0687E', core='#E3A3AE', blue='#5C97C4', yellow='#F0C93F',
+         shape='melange', deep='#2F4466'),
+    dict(key='dahlia', name='Dahlia framboise',
+         why="Une vraie fleur de mariage, et une g\u00e9om\u00e9trie qui se dessine bien \u00e0 plat : quatre couronnes de p\u00e9tales pointus qui se r\u00e9duisent vers le centre, chaque couronne d\u00e9cal\u00e9e par rapport \u00e0 la pr\u00e9c\u00e9dente. C'est ce feuillet\u00e9 qui la distingue d'une marguerite. Framboise et corail, sur cr\u00e8me.",
+         ground='#F5F0E8', ink='#2B2226', label='#8A2C46', title='#B33A5B', amp='#E27A62',
+         petal='#B33A5B', core='#E27A62', shape='dahlia', deep='#7A1F38'),    dict(key='terre', name='Terre cuite',
          why="Une famille chaude et resserrée : terre cuite, rose ancien, brique. C'est la plus douce des quatre et la plus facile à imprimer, les tons chauds ne bougent pas au tirage. Les pétales deviennent pointus, ce qui donne une marguerite plutôt qu'une fleur ronde.",
          ground='#F3EEE7', ink='#2A211C', label='#8E3B2E', title='#C15A3C', amp='#C15A3C',
          petal='#C15A3C', core='#D98E86', shape='pointed', deep='#7E2C21'),
@@ -262,9 +278,11 @@ def T(x, y, cls, fr, en, anchor='start'):
             % (cls, x, y, anchor, fr, cls, x, y, anchor, en))
 
 def build(p):
-    shape = SHAPES[p['shape']]
+    shape = SHAPES.get(p['shape'])
     out = ['<rect width="%d" height="%d" fill="%s"/>' % (W, H, p['ground'])]
-    if p['shape'] == 'sprig':
+    if p['shape'] == 'melange':
+        out.append(bouquet(1462, 556, 300, p['petal'], p['core'], p['blue'], p['yellow']))
+    elif p['shape'] == 'sprig':
         out.append(sprig((1548, 1140), (1616, 780), (1372, 430), (1436, 96),
                          112, p['petal'], p['core']))
     else:
@@ -304,20 +322,25 @@ def verso_ground(p):
     return p['deep']
 
 def build_verso(p):
-    shape = SHAPES[p['shape']]
+    shape = SHAPES.get(p['shape'])
     g = verso_ground(p)
     out = ['<rect width="%d" height="%d" fill="%s"/>' % (W, H, g)]
-    if p['shape'] == 'sprig':
+    if p['shape'] == 'melange':
+        out.append(bouquet(140, 140, 175, CREAM_V, p['core'], CREAM_V, p['yellow']))
+        out.append(bouquet(1430, 985, 205, p['core'], CREAM_V, p['yellow'], CREAM_V))
+    elif p['shape'] == 'sprig':
         out.append(sprig((-40, 1160), (140, 820), (-90, 430), (90, 70), 104, CREAM_V, p['core']))
         out.append(sprig((1600, -40), (1420, 300), (1650, 700), (1470, 1040), 92, p['core'], CREAM_V))
     else:
         out.append(shape(120, 130, 170, CREAM_V, p['core']))
         out.append(shape(1440, 980, 200, p['core'], CREAM_V))
         out.append(shape(1230, 210, 92, p['core'], CREAM_V))
-    out.append('<text class="vt fr" x="%d" y="512" text-anchor="middle">L&#8217;INVITATION SUIVRA</text>' % (W / 2))
-    out.append('<text class="vt en" x="%d" y="512" text-anchor="middle">THE INVITATION WILL FOLLOW</text>' % (W / 2))
-    out.append('<text class="vs fr" x="%d" y="578" text-anchor="middle">CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN, MAIS CONSERVEZ-LA.</text>' % (W / 2))
-    out.append('<text class="vs en" x="%d" y="578" text-anchor="middle">KEEP THIS CARD. IT SERVES NO PURPOSE, BUT KEEP IT.</text>' % (W / 2))
+    out.append('<text class="vt fr" x="%d" y="496" text-anchor="middle">L&#8217;INVITATION SUIVRA</text>' % (W / 2))
+    out.append('<text class="vt en" x="%d" y="496" text-anchor="middle">THE INVITATION WILL FOLLOW</text>' % (W / 2))
+    out.append('<text class="vs fr" x="%d" y="562" text-anchor="middle">CONSERVEZ CETTE CARTE JUSQU&#8217;&#192; LA FIN DE LA S&#201;ANCE.</text>' % (W / 2))
+    out.append('<text class="vs en" x="%d" y="562" text-anchor="middle">KEEP THIS CARD UNTIL THE END OF THE SCREENING.</text>' % (W / 2))
+    out.append('<text class="vs fr" x="%d" y="602" text-anchor="middle">AUCUN DUPLICATA NE SERA &#201;MIS.</text>' % (W / 2))
+    out.append('<text class="vs en" x="%d" y="602" text-anchor="middle">NO DUPLICATE WILL BE ISSUED.</text>' % (W / 2))
     return ('<svg id="%sv" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" '
             'data-l="fr" data-n="formal" role="img" aria-label="Verso de la carte, palette %s">'
             '<style>%s</style>%s</svg>' % (p['key'], W, H, p['name'], verso_style(p), ''.join(out)))
