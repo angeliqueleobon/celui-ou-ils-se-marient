@@ -246,6 +246,11 @@ def style_for(p):
     %(sel)s[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
 """ % d
 
+COPYRIGHT = 'IX.IV.MMXIX'
+
+def _mark():
+    return (' &#8226; &#169; ' + COPYRIGHT) if COPYRIGHT else ''
+
 def credits(x, y1, y2, fill=None, anchor='start'):
     """two end-credit lines. The naming card rides with the cast credits, where
     names belong, so the last line can carry the same punchline in every
@@ -265,11 +270,11 @@ def credits(x, y1, y2, fill=None, anchor='start'):
         out.append('<text class="fine en" data-n="%s" x="%s" y="%s"%s text-anchor="%s">%s</text>'
                    % (scope, x, y1, f, anchor, en))
     out.append('<text class="fine fr" x="%s" y="%s"%s text-anchor="%s">'
-               'D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text>'
-               % (x, y2, f, anchor))
+               'D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;%s</text>'
+               % (x, y2, f, anchor, _mark()))
     out.append('<text class="fine en" x="%s" y="%s"%s text-anchor="%s">'
-               'BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text>'
-               % (x, y2, f, anchor))
+               'BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED%s</text>'
+               % (x, y2, f, anchor, _mark()))
     return ''.join(out)
 
 def T(x, y, cls, fr, en, anchor='start'):
@@ -297,7 +302,7 @@ def build(p):
     out.append(T(X, 760, 'soon', 'UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT', 'A NEW SERIES &#8226; COMING SOON'))
     out.append(T(X, 842, 'date', 'VENDREDI 7 MAI 2027', 'FRIDAY 7 MAY 2027'))
     out.append(T(X, 894, 'place', 'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE', 'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE'))
-    out.append(credits(X, 962, 1000))
+    out.append(credits(X, 938, 972))
     return ('<svg id="%s" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" '
             'data-l="fr" data-n="formal" role="img" aria-label="Save the date, palette %s, A6 paysage">'
             '<style>%s</style>%s</svg>' % (p['key'], W, H, p['name'], style_for(p), ''.join(out)))
@@ -335,12 +340,10 @@ def build_verso(p):
         out.append(shape(120, 130, 170, CREAM_V, p['core']))
         out.append(shape(1440, 980, 200, p['core'], CREAM_V))
         out.append(shape(1230, 210, 92, p['core'], CREAM_V))
-    out.append('<text class="vt fr" x="%d" y="496" text-anchor="middle">L&#8217;INVITATION SUIVRA</text>' % (W / 2))
-    out.append('<text class="vt en" x="%d" y="496" text-anchor="middle">THE INVITATION WILL FOLLOW</text>' % (W / 2))
-    out.append('<text class="vs fr" x="%d" y="562" text-anchor="middle">CONSERVEZ CETTE CARTE JUSQU&#8217;&#192; LA FIN DE LA S&#201;ANCE.</text>' % (W / 2))
-    out.append('<text class="vs en" x="%d" y="562" text-anchor="middle">RETAIN THIS CARD UNTIL THE END OF THE SCREENING.</text>' % (W / 2))
-    out.append('<text class="vs fr" x="%d" y="602" text-anchor="middle">AUCUN DUPLICATA NE SERA D&#201;LIVR&#201;.</text>' % (W / 2))
-    out.append('<text class="vs en" x="%d" y="602" text-anchor="middle">NO DUPLICATE WILL BE ISSUED.</text>' % (W / 2))
+    out.append('<text class="vt fr" x="%d" y="533" text-anchor="middle">L&#8217;INVITATION SUIVRA</text>' % (W / 2))
+    out.append('<text class="vt en" x="%d" y="533" text-anchor="middle">INVITATION TO FOLLOW</text>' % (W / 2))
+    out.append('<text class="vs fr" x="%d" y="599" text-anchor="middle">CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN. CONSERVEZ-LA QUAND M&#202;ME.</text>' % (W / 2))
+    out.append('<text class="vs en" x="%d" y="599" text-anchor="middle">RETAIN THIS CARD. IT SERVES NO PURPOSE. RETENTION REMAINS COMPULSORY.</text>' % (W / 2))
     return ('<svg id="%sv" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" '
             'data-l="fr" data-n="formal" role="img" aria-label="Verso de la carte, palette %s">'
             '<style>%s</style>%s</svg>' % (p['key'], W, H, p['name'], verso_style(p), ''.join(out)))

@@ -34,6 +34,11 @@ def bloom(cx, cy, ring, petal, core, petal_fill, core_fill, n=6, start=-90):
     out.append('</g><circle cx="%.1f" cy="%.1f" r="%.1f" fill="%s"/>' % (cx, cy, core, core_fill))
     return ''.join(out)
 
+COPYRIGHT = 'IX.IV.MMXIX'
+
+def _mark():
+    return (' &#8226; &#169; ' + COPYRIGHT) if COPYRIGHT else ''
+
 def credits(x, y1, y2, fill=None, anchor='start'):
     """two end-credit lines. The naming card rides with the cast credits, where
     names belong, so the last line can carry the same punchline in every
@@ -53,11 +58,11 @@ def credits(x, y1, y2, fill=None, anchor='start'):
         out.append('<text class="fine en" data-n="%s" x="%s" y="%s"%s text-anchor="%s">%s</text>'
                    % (scope, x, y1, f, anchor, en))
     out.append('<text class="fine fr" x="%s" y="%s"%s text-anchor="%s">'
-               'D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;</text>'
-               % (x, y2, f, anchor))
+               'D&#8217;APR&#200;S DES FAITS R&#201;ELS &#8226; AUCUN INVIT&#201; NE SERA MALTRAIT&#201;%s</text>'
+               % (x, y2, f, anchor, _mark()))
     out.append('<text class="fine en" x="%s" y="%s"%s text-anchor="%s">'
-               'BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED</text>'
-               % (x, y2, f, anchor))
+               'BASED ON REAL EVENTS &#8226; NO GUEST WILL BE HARMED%s</text>'
+               % (x, y2, f, anchor, _mark()))
     return ''.join(out)
 
 def T(x, y, cls, fr, en, fill, anchor='start'):
@@ -112,17 +117,15 @@ recto.append(T(X, 760, 'soon', 'UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT', 
 recto.append(T(X, 842, 'date', 'VENDREDI 7 MAI 2027', 'FRIDAY 7 MAY 2027', INK))
 recto.append(T(X, 894, 'place', 'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE',
                'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE', GREEN))
-recto.append(credits(X, 962, 1000, INK))
+recto.append(credits(X, 938, 972, INK))
 
 verso = ['<rect width="%d" height="%d" fill="%s"/>' % (W, H, GREEN)]
 verso.append(bloom(150, 150, 176, 109, 140, MUSTARD, TOMATO))
 verso.append(bloom(1420, 980, 208, 129, 166, TOMATO, MUSTARD))
 verso.append(bloom(1180, 210, 96, 60, 77, TOMATO, MUSTARD))
-verso.append(T(W / 2, 496, 'verso', 'L&#8217;INVITATION SUIVRA', 'THE INVITATION WILL FOLLOW', CREAM, anchor='middle'))
-verso.append(T(W / 2, 562, 'prod', 'CONSERVEZ CETTE CARTE JUSQU&#8217;&#192; LA FIN DE LA S&#201;ANCE.',
-               'RETAIN THIS CARD UNTIL THE END OF THE SCREENING.', MUSTARD, anchor='middle'))
-verso.append(T(W / 2, 602, 'prod', 'AUCUN DUPLICATA NE SERA D&#201;LIVR&#201;.',
-               'NO DUPLICATE WILL BE ISSUED.', MUSTARD, anchor='middle'))
+verso.append(T(W / 2, 533, 'verso', 'L&#8217;INVITATION SUIVRA', 'INVITATION TO FOLLOW', CREAM, anchor='middle'))
+verso.append(T(W / 2, 599, 'prod', 'CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN. CONSERVEZ-LA QUAND M&#202;ME.',
+               'RETAIN THIS CARD. IT SERVES NO PURPOSE. RETENTION REMAINS COMPULSORY.', MUSTARD, anchor='middle'))
 
 
 def text_block(fill_ink, fill_green, fill_tomato, amp):
@@ -136,7 +139,7 @@ def text_block(fill_ink, fill_green, fill_tomato, amp):
     out.append(T(X, 842, 'date', 'VENDREDI 7 MAI 2027', 'FRIDAY 7 MAY 2027', fill_ink))
     out.append(T(X, 894, 'place', 'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE',
                  'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE', fill_green))
-    out.append(credits(X, 962, 1000, fill_ink))
+    out.append(credits(X, 938, 972, fill_ink))
     return ''.join(out)
 
 # --- equilibree : light ground kept, one saturated block, three blooms ---
@@ -191,7 +194,7 @@ fleur.append(T(CX, 724, 'soon', 'UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT',
 fleur.append(T(CX, 806, 'date', 'VENDREDI 7 MAI 2027', 'FRIDAY 7 MAY 2027', INK, anchor='middle'))
 fleur.append(T(CX, 856, 'place', 'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE',
                'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE', GREEN, anchor='middle'))
-fleur.append(credits(CX, 946, 984, INK, anchor='middle'))
+fleur.append(credits(CX, 922, 972, INK, anchor='middle'))
 
 # --- B : la date en vedette ---
 grosdate = ['<rect width="%d" height="%d" fill="%s"/>' % (W, H, CREAM)]
@@ -205,7 +208,7 @@ grosdate.append(T(X, 740, 'huge-date', 'MAI 2027', 'MAY 2027', TOMATO))
 grosdate.append(T(X, 806, 'place', 'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE',
                   'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE', GREEN))
 grosdate.append(T(X, 856, 'soon', 'UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT', 'A NEW SERIES &#8226; COMING SOON', GREEN))
-grosdate.append(credits(X, 940, 978, INK))
+grosdate.append(credits(X, 916, 966, INK))
 
 # --- C : l'horizon fleuri ---
 horizon = ['<rect width="%d" height="%d" fill="%s"/>' % (W, H, CREAM)]
@@ -221,7 +224,7 @@ horizon.append(T(X, 684, 'soon', 'UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT'
 horizon.append(T(X, 760, 'date', 'VENDREDI 7 MAI 2027', 'FRIDAY 7 MAY 2027', INK))
 horizon.append(T(X, 810, 'place', 'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE',
                  'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE', GREEN))
-horizon.append(credits(X, 870, 906, INK))
+horizon.append(credits(X, 846, 894, INK))
 
 # --- D : presque tout en typo ---
 typo = ['<rect width="%d" height="%d" fill="%s"/>' % (W, H, CREAM)]
@@ -232,9 +235,9 @@ typo.append(T(X, 660, 'title', 'CELUI QUI SE MARIE', 'THE ONE WITH THE WEDDING',
 typo.append('<line x1="%d" y1="730" x2="1430" y2="730" stroke="%s" stroke-opacity=".3" stroke-width="1.6"/>' % (X, INK))
 typo.append(T(X, 786, 'soon', 'UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT', 'A NEW SERIES &#8226; COMING SOON', GREEN))
 typo.append(T(X, 852, 'date', 'VENDREDI 7 MAI 2027', 'FRIDAY 7 MAY 2027', INK))
-typo.append(T(1430, 900, 'place', 'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE',
-              'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE', GREEN, anchor='end'))
-typo.append(credits(X, 946, 984, INK))
+typo.append(T(X, 904, 'place', 'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE',
+              'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE', GREEN))
+typo.append(credits(X, 948, 982, INK))
 
 def card(cid, parts, label, guides=True):
     body = ''.join(parts) + (GUIDES if guides else '')
