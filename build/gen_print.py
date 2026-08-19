@@ -118,9 +118,11 @@ verso = ['<rect width="%d" height="%d" fill="%s"/>' % (W, H, GREEN)]
 verso.append(bloom(150, 150, 176, 109, 140, MUSTARD, TOMATO))
 verso.append(bloom(1420, 980, 208, 129, 166, TOMATO, MUSTARD))
 verso.append(bloom(1180, 210, 96, 60, 77, TOMATO, MUSTARD))
-verso.append(T(W / 2, 512, 'verso', 'L&#8217;INVITATION SUIVRA', 'THE INVITATION WILL FOLLOW', CREAM, anchor='middle'))
-verso.append(T(W / 2, 578, 'prod', 'CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN, MAIS CONSERVEZ-LA.',
-               'KEEP THIS CARD. IT SERVES NO PURPOSE, BUT KEEP IT.', MUSTARD, anchor='middle'))
+verso.append(T(W / 2, 496, 'verso', 'L&#8217;INVITATION SUIVRA', 'THE INVITATION WILL FOLLOW', CREAM, anchor='middle'))
+verso.append(T(W / 2, 562, 'prod', 'CONSERVEZ CETTE CARTE JUSQU&#8217;&#192; LA FIN DE LA S&#201;ANCE.',
+               'KEEP THIS CARD UNTIL THE END OF THE SCREENING.', MUSTARD, anchor='middle'))
+verso.append(T(W / 2, 602, 'prod', 'AUCUN DUPLICATA NE SERA &#201;MIS.',
+               'NO DUPLICATE WILL BE ISSUED.', MUSTARD, anchor='middle'))
 
 
 def text_block(fill_ink, fill_green, fill_tomato, amp):
