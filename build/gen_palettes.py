@@ -292,7 +292,7 @@ def build(p):
         out.append('<text class="nm" data-n="%s" style="font-size:96px" x="%d" y="430">%s</text>' % (key, X, first))
         out.append('<text class="nm" data-n="%s" style="font-size:96px" x="%d" y="540">'
                    '<tspan fill="%s">&amp; </tspan>%s</text>' % (key, X, p['amp'], second))
-    out.append(T(X, 632, 'title', 'CEUX QUI SE MARIENT', 'THE ONE WITH THE WEDDING'))
+    out.append(T(X, 632, 'title', 'CELUI QUI SE MARIE', 'THE ONE WITH THE WEDDING'))
     out.append('<line x1="%d" y1="700" x2="960" y2="700" stroke="%s" stroke-opacity=".3" stroke-width="1.6"/>' % (X, p['ink']))
     out.append(T(X, 760, 'soon', 'UNE NOUVELLE S&#201;RIE &#8226; PROCHAINEMENT', 'A NEW SERIES &#8226; COMING SOON'))
     out.append(T(X, 842, 'date', 'VENDREDI 7 MAI 2027', 'FRIDAY 7 MAY 2027'))

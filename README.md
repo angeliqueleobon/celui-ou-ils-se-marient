@@ -1,4 +1,4 @@
-# Ceux qui se marient
+# Celui qui se marie
 
 Papeterie du mariage d'Arnaud et Emily, le vendredi 7 mai 2027 au Château Eyparsac, à Beyssac en Corrèze.
 
