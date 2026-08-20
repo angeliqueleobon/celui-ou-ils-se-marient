@@ -219,7 +219,7 @@ button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
   </section>
 
   <section class="piece">
-    <p class="piece-tag">Verso &bull; proposition</p>
+    <p class="piece-tag">Verso &bull; conservez-la quand même</p>
     <div class="stage"><svg id="verso" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date verso, format A6 paysage avec fond perdu"><style>
     text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
     .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; }
@@ -244,6 +244,32 @@ button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
     </div>
   </section>
 
+  <section class="piece">
+    <p class="piece-tag">Verso &bull; aucun contrôle n'est prévu</p>
+    <div class="stage"><svg id="versob" class="card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 1110" data-l="fr" data-n="formal" role="img" aria-label="Save the date verso, variante de mention, A6 paysage avec fond perdu"><style>
+    text { font-family: Futura, "Futura PT", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif; }
+    .prod  { font-size: 17px; letter-spacing: 6.6px; font-weight: 500; }
+    .nm    { font-weight: 700; letter-spacing: 11px; }
+    .title { font-size: 30px; letter-spacing: 11px; font-weight: 500; }
+    .soon  { font-size: 21px; letter-spacing: 8.6px; font-weight: 500; }
+    .date  { font-size: 49px; letter-spacing: 5.4px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .huge-date { font-size: 112px; letter-spacing: 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .title-s { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+    .place { font-size: 20px; letter-spacing: 5.8px; font-weight: 500; }
+    .fine  { font-size: 16px; letter-spacing: 3.4px; opacity: .55; }
+    .verso { font-size: 26px; letter-spacing: 9px; font-weight: 500; }
+
+    svg[data-l="fr"] .en, svg[data-l="en"] .fr { display: none; }
+    svg[data-n="nick"]   [data-n]:not([data-n~="nick"]),
+    svg[data-n="formal"] [data-n]:not([data-n~="formal"]),
+    svg[data-n="handle"] [data-n]:not([data-n~="handle"]) { display: none; }
+</style><rect width="1540" height="1110" fill="#14524E"/><g fill="#E9B23C"><circle cx="150.0" cy="-26.0" r="109.0"/><circle cx="302.4" cy="62.0" r="109.0"/><circle cx="302.4" cy="238.0" r="109.0"/><circle cx="150.0" cy="326.0" r="109.0"/><circle cx="-2.4" cy="238.0" r="109.0"/><circle cx="-2.4" cy="62.0" r="109.0"/></g><circle cx="150.0" cy="150.0" r="140.0" fill="#E4472F"/><g fill="#E4472F"><circle cx="1420.0" cy="772.0" r="129.0"/><circle cx="1600.1" cy="876.0" r="129.0"/><circle cx="1600.1" cy="1084.0" r="129.0"/><circle cx="1420.0" cy="1188.0" r="129.0"/><circle cx="1239.9" cy="1084.0" r="129.0"/><circle cx="1239.9" cy="876.0" r="129.0"/></g><circle cx="1420.0" cy="980.0" r="166.0" fill="#E9B23C"/><g fill="#E4472F"><circle cx="1180.0" cy="114.0" r="60.0"/><circle cx="1263.1" cy="162.0" r="60.0"/><circle cx="1263.1" cy="258.0" r="60.0"/><circle cx="1180.0" cy="306.0" r="60.0"/><circle cx="1096.9" cy="258.0" r="60.0"/><circle cx="1096.9" cy="162.0" r="60.0"/></g><circle cx="1180.0" cy="210.0" r="77.0" fill="#E9B23C"/><text class="verso fr" x="770.0" y="533" fill="#F4F0E6" text-anchor="middle">L&#8217;INVITATION SUIVRA</text><text class="verso en" x="770.0" y="533" fill="#F4F0E6" text-anchor="middle">INVITATION TO FOLLOW</text><text class="prod fr" x="770.0" y="599" fill="#E9B23C" text-anchor="middle">CETTE CARTE DOIT &#202;TRE CONSERV&#201;E POUR CONTR&#212;LE. AUCUN CONTR&#212;LE N&#8217;EST PR&#201;VU.</text><text class="prod en" x="770.0" y="599" fill="#E9B23C" text-anchor="middle">THIS CARD MUST BE RETAINED FOR INSPECTION. NO INSPECTION WILL TAKE PLACE.</text><g class="guide"><rect x="30" y="30" width="1480" height="1050" fill="none" stroke="#E4472F" stroke-opacity=".5" stroke-width="2" stroke-dasharray="14 10"/><rect x="80" y="80" width="1380" height="950" fill="none" stroke="#14524E" stroke-opacity=".28" stroke-width="2" stroke-dasharray="5 9"/></g></svg></div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="versob">PNG 300 dpi &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="versob">SVG imprimeur &bull; FR + EN</button>
+    </div>
+  </section>
+
   <section class="note">
     <h2>Pour l'impression</h2>
     <p><b>Papier.</b> 350 g minimum, mat de préférence : sous 350 g l'aplat vert du verso traverse et se voit au recto, et un brillant marque les traces de doigts.</p>
@@ -262,7 +288,7 @@ button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
   var W = 1540, H = 1110;
   var MM_W = '154.0mm', MM_H = '111.0mm';
   var DPI_SCALE = 300 / 254.0 * 1.0;   /* 1 unit = 0.1 mm, so 300 dpi = 1.1811 px per unit */
-  var GROUNDS = { recto: '#F4F0E6', verso: '#14524E' };
+  var GROUNDS = { recto: '#F4F0E6', verso: '#14524E', versob: '#14524E' };
 
   function toast(msg) {
     toastEl.textContent = msg;

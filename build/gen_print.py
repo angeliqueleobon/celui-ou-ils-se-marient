@@ -119,13 +119,23 @@ recto.append(T(X, 894, 'place', 'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#20
                'CH&#194;TEAU EYPARSAC &#8226; BEYSSAC, CORR&#200;ZE', GREEN))
 recto.append(credits(X, 938, 972, INK))
 
-verso = ['<rect width="%d" height="%d" fill="%s"/>' % (W, H, GREEN)]
-verso.append(bloom(150, 150, 176, 109, 140, MUSTARD, TOMATO))
-verso.append(bloom(1420, 980, 208, 129, 166, TOMATO, MUSTARD))
-verso.append(bloom(1180, 210, 96, 60, 77, TOMATO, MUSTARD))
-verso.append(T(W / 2, 533, 'verso', 'L&#8217;INVITATION SUIVRA', 'INVITATION TO FOLLOW', CREAM, anchor='middle'))
-verso.append(T(W / 2, 599, 'prod', 'CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN. CONSERVEZ-LA QUAND M&#202;ME.',
-               'RETAIN THIS CARD. IT SERVES NO PURPOSE. RETENTION REMAINS COMPULSORY.', MUSTARD, anchor='middle'))
+def build_verso(mention_fr, mention_en):
+    out = ['<rect width="%d" height="%d" fill="%s"/>' % (W, H, GREEN)]
+    out.append(bloom(150, 150, 176, 109, 140, MUSTARD, TOMATO))
+    out.append(bloom(1420, 980, 208, 129, 166, TOMATO, MUSTARD))
+    out.append(bloom(1180, 210, 96, 60, 77, TOMATO, MUSTARD))
+    out.append(T(W / 2, 533, 'verso', 'L&#8217;INVITATION SUIVRA', 'INVITATION TO FOLLOW',
+                 CREAM, anchor='middle'))
+    out.append(T(W / 2, 599, 'prod', mention_fr, mention_en, MUSTARD, anchor='middle'))
+    return out
+
+verso = build_verso(
+    'CONSERVEZ CETTE CARTE. ELLE NE SERT &#192; RIEN. CONSERVEZ-LA QUAND M&#202;ME.',
+    'RETAIN THIS CARD. IT SERVES NO PURPOSE. RETENTION REMAINS COMPULSORY.')
+
+versob = build_verso(
+    'CETTE CARTE DOIT &#202;TRE CONSERV&#201;E POUR CONTR&#212;LE. AUCUN CONTR&#212;LE N&#8217;EST PR&#201;VU.',
+    'THIS CARD MUST BE RETAINED FOR INSPECTION. NO INSPECTION WILL TAKE PLACE.')
 
 
 def text_block(fill_ink, fill_green, fill_tomato, amp):
@@ -249,6 +259,7 @@ shell = read_shell("print_shell.html")
 page = (shell
         .replace('{{RECTO}}', card('recto', recto, "Save the date recto, format A6 paysage avec fond perdu"))
         .replace('{{VERSO}}', card('verso', verso, "Save the date verso, format A6 paysage avec fond perdu"))
+        .replace('{{VERSOB}}', card('versob', versob, "Save the date verso, variante de mention, A6 paysage avec fond perdu"))
         .replace('{{W}}', str(W)).replace('{{H}}', str(H))
         .replace('{{MMW}}', '%.1f' % MM_W).replace('{{MMH}}', '%.1f' % MM_H))
 io.open(OUT, "w", encoding="utf-8").write(page)
@@ -297,6 +308,7 @@ epage = (eshell
          .replace('{{HORIZON}}', card('horizon', horizon, "Save the date, horizon fleuri, A6 paysage", guides=False))
          .replace('{{TYPO}}', card('typo', typo, "Save the date, presque tout en typographie, A6 paysage", guides=False))
          .replace('{{VERSO}}', card('verso', verso, "Verso de la carte, A6 paysage", guides=False))
+         .replace('{{VERSOB}}', card('versob', versob, "Verso de la carte, variante de mention, A6 paysage", guides=False))
          .replace('{{W}}', str(W)).replace('{{H}}', str(H))
          .replace('{{MMW}}', '%.1f' % MM_W).replace('{{MMH}}', '%.1f' % MM_H))
 io.open(EMILY, "w", encoding="utf-8").write(epage)

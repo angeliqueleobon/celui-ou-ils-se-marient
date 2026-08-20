@@ -202,11 +202,20 @@ button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
   </section>
 
   <section class="piece">
-    <p class="piece-tag">Verso &bull; proposition</p>
+    <p class="piece-tag">Verso &bull; conservez-la quand même</p>
     <div class="stage">{{VERSO}}</div>
     <div class="actions">
       <button class="btn" type="button" data-png="verso">PNG 300 dpi &bull; FR + EN</button>
       <button class="btn ghost" type="button" data-svg="verso">SVG imprimeur &bull; FR + EN</button>
+    </div>
+  </section>
+
+  <section class="piece">
+    <p class="piece-tag">Verso &bull; aucun contrôle n'est prévu</p>
+    <div class="stage">{{VERSOB}}</div>
+    <div class="actions">
+      <button class="btn" type="button" data-png="versob">PNG 300 dpi &bull; FR + EN</button>
+      <button class="btn ghost" type="button" data-svg="versob">SVG imprimeur &bull; FR + EN</button>
     </div>
   </section>
 
@@ -228,7 +237,7 @@ button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
   var W = {{W}}, H = {{H}};
   var MM_W = '{{MMW}}mm', MM_H = '{{MMH}}mm';
   var DPI_SCALE = 300 / 254.0 * 1.0;   /* 1 unit = 0.1 mm, so 300 dpi = 1.1811 px per unit */
-  var GROUNDS = { recto: '#F4F0E6', verso: '#14524E' };
+  var GROUNDS = { recto: '#F4F0E6', verso: '#14524E', versob: '#14524E' };
 
   function toast(msg) {
     toastEl.textContent = msg;
